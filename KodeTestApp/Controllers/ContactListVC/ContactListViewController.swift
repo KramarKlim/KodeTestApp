@@ -10,6 +10,12 @@ import UIKit
 class ContactListViewController: UIViewController {
     
     var model: ContactListModelProtocol! = ContactListModel()
+    
+    let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
         
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var sortContactsCollectionView: UICollectionView!
@@ -20,6 +26,12 @@ class ContactListViewController: UIViewController {
         setup()
         request()
     }
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        ContactTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     private func setup() {
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.showsBookmarkButton = true
@@ -36,6 +48,7 @@ class ContactListViewController: UIViewController {
         ContactTableView.delegate = self
         ContactTableView.dataSource = self
         ContactTableView.register(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: "contact")
+        ContactTableView.refreshControl = refreshControl
     }
     
     private func request() {
@@ -54,6 +67,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        collectionView.deselectItem(at: indexPath, animated: true)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sort", for: indexPath) as! SortedListCollectionViewCell
         let name = model.sortedList(indexPath: indexPath)
         cell.model = name
@@ -77,12 +91,23 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
 
 extension ContactListViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        model.didChanged(text: searchText)
+        ContactTableView.reloadData()
+    }
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        model.isSearching = false
         searchBar.showsCancelButton = false
+        ContactTableView.reloadData()
+        searchBar.showsBookmarkButton = true
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.endEditing(true)
     }
 }
 
@@ -92,6 +117,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath) as! ContactTableViewCell
         let contact = model.contactModel(indexPath: indexPath)
         cell.model = contact

@@ -9,49 +9,48 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contact" rowHeight="81" id="KGk-i7-Jjw" customClass="ContactTableViewCell" customModule="KodeTestApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contact" rowHeight="107" id="KGk-i7-Jjw" customClass="ContactTableViewCell" customModule="KodeTestApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iww-Et-XXb">
-                        <rect key="frame" x="16" y="1" width="72" height="72"/>
+                        <rect key="frame" x="16" y="14" width="72" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="72" id="N7V-ME-seV"/>
                             <constraint firstAttribute="width" constant="72" id="eeK-xp-Stn"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Алексей Миногаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ew-kR-wDd">
-                        <rect key="frame" x="104" y="7" width="185.5" height="24"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Zt-6S-Qxn">
-                        <rect key="frame" x="293.5" y="8.5" width="19.5" height="21"/>
+                        <rect key="frame" x="293.5" y="29.5" width="19.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k36-Sp-2cP">
-                        <rect key="frame" x="104" y="34" width="39.5" height="19.5"/>
+                        <rect key="frame" x="104" y="55" width="39.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Алексей Миногаров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ew-kR-wDd">
+                        <rect key="frame" x="104" y="28" width="185.5" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Iww-Et-XXb" secondAttribute="bottom" constant="1" id="2W3-8i-Qby"/>
-                    <constraint firstItem="2ew-kR-wDd" firstAttribute="leading" secondItem="Iww-Et-XXb" secondAttribute="trailing" constant="16" id="8m6-J5-Rhh"/>
+                    <constraint firstItem="2ew-kR-wDd" firstAttribute="centerY" secondItem="Iww-Et-XXb" secondAttribute="centerY" constant="-10" id="0aE-I8-D5c"/>
+                    <constraint firstItem="2ew-kR-wDd" firstAttribute="leading" secondItem="Iww-Et-XXb" secondAttribute="trailing" constant="16" id="FdX-Cc-yR2"/>
                     <constraint firstItem="1Zt-6S-Qxn" firstAttribute="centerY" secondItem="2ew-kR-wDd" secondAttribute="centerY" id="Qxp-91-sbG"/>
-                    <constraint firstItem="2ew-kR-wDd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="WZo-rc-hsk"/>
                     <constraint firstItem="Iww-Et-XXb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dTw-Uy-2Ze"/>
                     <constraint firstItem="k36-Sp-2cP" firstAttribute="top" secondItem="2ew-kR-wDd" secondAttribute="bottom" constant="3" id="hFv-8L-ozz"/>
-                    <constraint firstItem="Iww-Et-XXb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="jDX-8M-gxg"/>
-                    <constraint firstItem="k36-Sp-2cP" firstAttribute="leading" secondItem="Iww-Et-XXb" secondAttribute="trailing" constant="16" id="jI9-p5-rBq"/>
+                    <constraint firstItem="k36-Sp-2cP" firstAttribute="leading" secondItem="Iww-Et-XXb" secondAttribute="trailing" constant="16" id="kil-DD-6uy"/>
                     <constraint firstItem="1Zt-6S-Qxn" firstAttribute="leading" secondItem="2ew-kR-wDd" secondAttribute="trailing" constant="4" id="up3-Sf-UwU"/>
+                    <constraint firstItem="Iww-Et-XXb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zuR-C0-RLR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -61,7 +60,7 @@
                 <outlet property="profileImage" destination="Iww-Et-XXb" id="cmQ-qQ-1BQ"/>
                 <outlet property="tagLabel" destination="1Zt-6S-Qxn" id="zbh-5g-Qvt"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="118.86160714285714"/>
+            <point key="canvasLocation" x="138.40579710144928" y="121.20535714285714"/>
         </tableViewCell>
     </objects>
 </document>

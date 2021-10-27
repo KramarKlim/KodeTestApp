@@ -30,7 +30,7 @@ class ContactModel: ContactModelProtocol {
     }
     
     func getName() -> String {
-        (contact.firstName ?? "Неизвестно") + (contact.lastName ?? "Неизвестно")
+        (contact.firstName ?? "Неизвестно") + " " + (contact.lastName ?? "Неизвестно")
     }
     
     func getPosition() -> String {
