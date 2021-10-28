@@ -15,8 +15,18 @@ class ContactTableViewCell: UITableViewCell {
             nameLabel.text = model.getName()
             positionLabel.text = model.getPosition()
             tagLabel.text = model.getTag()
-            profileImage.layer.cornerRadius = 36
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImage.image = nil
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        profileImage.layer.cornerRadius = 36
+        profileImage.clipsToBounds = true
     }
 
     @IBOutlet var profileImage: UIImageView!

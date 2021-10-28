@@ -10,7 +10,7 @@ import UIKit
 
 protocol ContactListModelProtocol {
     var lastActiveIndex: IndexPath { get set }
-    var contacts: [Item] { get }
+    var contacts: [Item] { get set }
     var filtered: [Item] { get set }
     var isSearching: Bool { get set }
     
@@ -32,7 +32,6 @@ class ContactListModel: ContactListModelProtocol {
     var contacts: [Item] = []
     
     var lastActiveIndex: IndexPath = [0,0]
-    
     
     func numberOfCells() -> Int {
         DataManager.shared.sortingType.count

@@ -16,7 +16,7 @@ class ContactListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
-        
+    
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var sortContactsCollectionView: UICollectionView!
     @IBOutlet var ContactTableView: UITableView!
@@ -27,12 +27,23 @@ class ContactListViewController: UIViewController {
         request()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        showSkeleton(for: ContactTableViewCell())
+    }
+    
     @objc private func refresh(sender: UIRefreshControl) {
         ContactTableView.reloadData()
         refreshControl.endRefreshing()
     }
     
     private func setup() {
+        setupSearchBar()
+        setupCollectionView()
+        setupTableView()
+    }
+    
+    private func setupSearchBar() {
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.showsBookmarkButton = true
         searchBar.setImage(UIImage(systemName: "list.bullet.indent"), for: .bookmark, state: .normal)
@@ -40,11 +51,15 @@ class ContactListViewController: UIViewController {
         searchBar.sizeToFit()
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         searchBar.setValue("Отмена", forKey: "cancelButtonText")
-        
+    }
+    
+    private func setupCollectionView() {
         sortContactsCollectionView.register(UINib(nibName: "SortedListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "sort")
         sortContactsCollectionView.dataSource = self
         sortContactsCollectionView.delegate = self
-
+    }
+    
+    private func setupTableView() {
         ContactTableView.delegate = self
         ContactTableView.dataSource = self
         ContactTableView.register(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: "contact")
@@ -81,9 +96,9 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             cell.nameLabel.textColor = .black
             cell.colorView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
             
-            let cell1 = collectionView.cellForItem(at: model.lastActiveIndex) as! SortedListCollectionViewCell
-            cell1.nameLabel.textColor = .lightGray
-            cell1.colorView.backgroundColor = .white
+            let cell1 = collectionView.cellForItem(at: model.lastActiveIndex) as? SortedListCollectionViewCell
+            cell1?.nameLabel.textColor = .lightGray
+            cell1?.colorView.backgroundColor = .white
             self.model.lastActiveIndex = indexPath
         }
     }
@@ -93,6 +108,11 @@ extension ContactListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         model.didChanged(text: searchText)
+        if model.filtered.isEmpty && model.isSearching {
+            ContactTableView.isHidden = true
+        } else {
+            ContactTableView.isHidden = false
+        }
         ContactTableView.reloadData()
     }
     
@@ -101,13 +121,23 @@ extension ContactListViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        model.isSearching = false
         searchBar.showsCancelButton = false
-        ContactTableView.reloadData()
         searchBar.showsBookmarkButton = true
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
+        searchBar.text = nil
         searchBar.endEditing(true)
+        ContactTableView.isHidden = false
+        model.isSearching = false
+        ContactTableView.reloadData()
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let picker = UIViewController()
+        picker.view.backgroundColor = .white
+        if let sheet = picker.presentationController as? UISheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(picker, animated: true, completion: nil)
     }
 }
 

@@ -22,45 +22,74 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OWp-K9-pAv">
-                                <rect key="frame" x="0.0" y="95" width="375" height="39"/>
+                                <rect key="frame" x="0.0" y="95" width="375" height="35"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="gcH-j9-l8z"/>
+                                    <constraint firstAttribute="height" constant="35" id="gcH-j9-l8z"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2kB-0E-CFk">
                                     <size key="itemSize" width="102" height="30"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="5" maxX="16" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="sort" id="xzP-81-2gL">
-                                        <rect key="frame" x="16" y="1.5" width="102" height="36"/>
+                                        <rect key="frame" x="16" y="5" width="102" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tAC-Af-llK">
-                                            <rect key="frame" x="0.0" y="0.0" width="102" height="36"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="102" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="102" height="36"/>
+                                        <size key="customSize" width="102" height="30"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TJT-D2-1Gy">
-                                <rect key="frame" x="0.0" y="142" width="375" height="525"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мы никого не нашли" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvd-h8-6gT">
+                                <rect key="frame" x="79.5" y="320.5" width="216" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Попробуй скорректировать вопрос" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWK-yU-XLi">
+                                <rect key="frame" x="16" y="359" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loop" translatesAutoresizingMaskIntoConstraints="NO" id="wX2-zh-duq">
+                                <rect key="frame" x="159.5" y="256.5" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Lf5-SR-LHI"/>
+                                    <constraint firstAttribute="width" constant="56" id="kcW-9A-Yrv"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TJT-D2-1Gy">
+                                <rect key="frame" x="0.0" y="138" width="375" height="529"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IDx-12-7up"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0H4-YX-9o1" firstAttribute="top" secondItem="IDx-12-7up" secondAttribute="top" id="0FI-k8-RZf"/>
+                            <constraint firstItem="wX2-zh-duq" firstAttribute="centerX" secondItem="eRE-ZZ-CBN" secondAttribute="centerX" id="0d7-me-CU2"/>
+                            <constraint firstItem="wvd-h8-6gT" firstAttribute="centerY" secondItem="eRE-ZZ-CBN" secondAttribute="centerY" id="6Yh-0R-IRh"/>
+                            <constraint firstItem="wvd-h8-6gT" firstAttribute="top" secondItem="wX2-zh-duq" secondAttribute="bottom" constant="8" id="7ee-t5-CJo"/>
                             <constraint firstItem="OWp-K9-pAv" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="9Op-qK-1xX"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="bottom" secondItem="IDx-12-7up" secondAttribute="bottom" id="AHw-Du-hoL"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="trailing" secondItem="IDx-12-7up" secondAttribute="trailing" id="Hlm-pm-rSI"/>
                             <constraint firstItem="0H4-YX-9o1" firstAttribute="trailing" secondItem="IDx-12-7up" secondAttribute="trailing" id="LiH-YV-zdB"/>
+                            <constraint firstItem="FWK-yU-XLi" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" constant="16" id="M8a-0I-KUI"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="PFx-ly-nSi"/>
+                            <constraint firstItem="wvd-h8-6gT" firstAttribute="centerX" secondItem="eRE-ZZ-CBN" secondAttribute="centerX" id="PGg-F1-1E5"/>
                             <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="OWp-K9-pAv" secondAttribute="trailing" id="Q4w-Zg-LLs"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="top" secondItem="OWp-K9-pAv" secondAttribute="bottom" constant="8" symbolic="YES" id="eVY-9q-YSZ"/>
+                            <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="FWK-yU-XLi" secondAttribute="trailing" constant="16" id="ecB-so-wvU"/>
+                            <constraint firstItem="FWK-yU-XLi" firstAttribute="top" secondItem="wvd-h8-6gT" secondAttribute="bottom" constant="12" id="nHS-0N-rAe"/>
                             <constraint firstItem="OWp-K9-pAv" firstAttribute="top" secondItem="0H4-YX-9o1" secondAttribute="bottom" id="oIi-eq-jU7"/>
                             <constraint firstItem="0H4-YX-9o1" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="r62-Lu-M8B"/>
                         </constraints>
@@ -96,6 +125,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="loop" width="56" height="56"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
