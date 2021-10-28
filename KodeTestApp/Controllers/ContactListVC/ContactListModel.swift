@@ -21,6 +21,7 @@ protocol ContactListModelProtocol {
     func fetchRequest(completion: @escaping () -> Void)
     func getNumberOfRows() -> Int
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol?
+    func profileModel(inedxPath: IndexPath) -> ProfileModelProtocol?
 }
 
 class ContactListModel: ContactListModelProtocol {
@@ -43,7 +44,7 @@ class ContactListModel: ContactListModelProtocol {
     
     func fetchRequest(completion: @escaping () -> Void) {
         NetworkManager.shared.fetchNetwork(headers: DataManager.shared.headers, request: DataManager.shared.request, expecting: User.self) { [self] user in
-            self.contacts = user.items ?? []
+            self.contacts = user.items?.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")} ?? []
             completion()
         }
     }
@@ -71,5 +72,13 @@ class ContactListModel: ContactListModelProtocol {
     func didChanged(text: String) {
         filtered = contacts.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
         isSearching = true
+    }
+    
+    func profileModel(inedxPath: IndexPath) -> ProfileModelProtocol? {
+        if isSearching {
+            return ProfileModel(profile: filtered[inedxPath.row])
+        } else {
+            return ProfileModel(profile: contacts[inedxPath.row])
+        }
     }
 }

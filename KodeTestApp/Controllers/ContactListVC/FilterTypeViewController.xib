@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterTypeViewController" customModule="KodeTestApp" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="jgD-wk-nAy" id="Rp8-fO-WAc"/>
+                <outlet property="dateButton" destination="ZaX-8y-9tm" id="lJH-MJ-M8j"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="wordButtom" destination="trv-Ir-EDD" id="T4L-79-BJD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgD-wk-nAy">
+                    <rect key="frame" x="24" y="60" width="31" height="25"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="Back"/>
+                    <connections>
+                        <action selector="backButtonAction:" destination="-1" eventType="touchUpInside" id="UgQ-PN-3iZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сортировка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2K-q0-XOL">
+                    <rect key="frame" x="157" y="62" width="100" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trv-Ir-EDD">
+                    <rect key="frame" x="24" y="133" width="174.5" height="38"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="Circle" title="  По алфавиту">
+                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="wordButtonAction:" destination="-1" eventType="touchUpInside" id="39q-tT-Z4l"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaX-8y-9tm">
+                    <rect key="frame" x="24" y="211" width="225.5" height="38"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" image="Vector" title="  По дню рождения">
+                        <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="dateButtonAction:" destination="-1" eventType="touchUpInside" id="Qhn-no-NQZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="g2K-q0-XOL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3V6-uv-D6r"/>
+                <constraint firstItem="trv-Ir-EDD" firstAttribute="top" secondItem="jgD-wk-nAy" secondAttribute="bottom" constant="48" id="736-am-Bh8"/>
+                <constraint firstItem="g2K-q0-XOL" firstAttribute="centerY" secondItem="jgD-wk-nAy" secondAttribute="centerY" id="7tQ-NS-jZo"/>
+                <constraint firstItem="jgD-wk-nAy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="LVd-KN-n0v"/>
+                <constraint firstItem="ZaX-8y-9tm" firstAttribute="top" secondItem="trv-Ir-EDD" secondAttribute="bottom" constant="40" id="LjN-sh-MrW"/>
+                <constraint firstItem="ZaX-8y-9tm" firstAttribute="leading" secondItem="trv-Ir-EDD" secondAttribute="leading" id="UbI-fv-SAS"/>
+                <constraint firstItem="jgD-wk-nAy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="f5a-go-vTm"/>
+                <constraint firstItem="trv-Ir-EDD" firstAttribute="leading" secondItem="jgD-wk-nAy" secondAttribute="leading" id="jhf-lh-TWq"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Back" width="7" height="11"/>
+        <image name="Circle" width="20" height="20"/>
+        <image name="Vector" width="22" height="22"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

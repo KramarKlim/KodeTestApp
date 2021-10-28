@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D3AD57E272AD1C200D4F941 /* FilterTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD57C272AD1C200D4F941 /* FilterTypeViewController.swift */; };
+		4D3AD57F272AD1C200D4F941 /* FilterTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3AD57D272AD1C200D4F941 /* FilterTypeViewController.xib */; };
+		4D3AD583272B11A200D4F941 /* FilterTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD582272B11A100D4F941 /* FilterTypeModel.swift */; };
+		4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */; };
+		4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */; };
+		4D3AD58A272B2FBA00D4F941 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD589272B2FB900D4F941 /* String.swift */; };
 		4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BD2728944B0005275E /* AppDelegate.swift */; };
 		4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BF2728944B0005275E /* SceneDelegate.swift */; };
 		4DEC73C52728944B0005275E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C32728944B0005275E /* Main.storyboard */; };
@@ -29,6 +35,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D3AD57C272AD1C200D4F941 /* FilterTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeViewController.swift; sourceTree = "<group>"; };
+		4D3AD57D272AD1C200D4F941 /* FilterTypeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterTypeViewController.xib; sourceTree = "<group>"; };
+		4D3AD582272B11A100D4F941 /* FilterTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTypeModel.swift; sourceTree = "<group>"; };
+		4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		4D3AD589272B2FB900D4F941 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		4DEC73BA2728944B0005275E /* KodeTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KodeTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEC73BD2728944B0005275E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DEC73BF2728944B0005275E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D3AD584272B1E1E00D4F941 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */,
+				4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */,
+			);
+			path = ProfileVC;
+			sourceTree = "<group>";
+		};
 		4DEC73B12728944B0005275E = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +120,7 @@
 		4DEC73D327289A650005275E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D3AD584272B1E1E00D4F941 /* ProfileVC */,
 				4DEC73D427289A770005275E /* ContactListVC */,
 			);
 			path = Controllers;
@@ -109,6 +131,9 @@
 			children = (
 				4DEC73E127296A360005275E /* ContactListViewController.swift */,
 				4DEC73E8272983590005275E /* ContactListModel.swift */,
+				4D3AD57C272AD1C200D4F941 /* FilterTypeViewController.swift */,
+				4D3AD582272B11A100D4F941 /* FilterTypeModel.swift */,
+				4D3AD57D272AD1C200D4F941 /* FilterTypeViewController.xib */,
 				4DEC73DC272967CA0005275E /* CollectionViewCell */,
 				4DEC73DB272967BC0005275E /* tableViewCell */,
 			);
@@ -158,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				4DEC73F82729C4F00005275E /* UIImage.swift */,
+				4D3AD589272B2FB900D4F941 /* String.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -222,6 +248,7 @@
 			files = (
 				4DEC73D827289A9E0005275E /* ContactTableViewCell.xib in Resources */,
 				4DEC73CA2728944E0005275E /* LaunchScreen.storyboard in Resources */,
+				4D3AD57F272AD1C200D4F941 /* FilterTypeViewController.xib in Resources */,
 				4DEC73E0272967E90005275E /* SortedListCollectionViewCell.xib in Resources */,
 				4DEC73C72728944E0005275E /* Assets.xcassets in Resources */,
 				4DEC73C52728944B0005275E /* Main.storyboard in Resources */,
@@ -235,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D3AD58A272B2FBA00D4F941 /* String.swift in Sources */,
 				4DEC73E7272981AB0005275E /* SortedListModel.swift in Sources */,
 				4DEC73D727289A9E0005275E /* ContactTableViewCell.swift in Sources */,
 				4DEC73F12729C0660005275E /* NetworkManager.swift in Sources */,
@@ -242,10 +270,14 @@
 				4DEC73F72729C4D80005275E /* ImageFetch.swift in Sources */,
 				4DEC73E5272974180005275E /* DataManager.swift in Sources */,
 				4DEC73E227296A360005275E /* ContactListViewController.swift in Sources */,
+				4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */,
 				4DEC73EF2729C0370005275E /* User.swift in Sources */,
+				4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */,
 				4DEC73DF272967E90005275E /* SortedListCollectionViewCell.swift in Sources */,
+				4D3AD583272B11A200D4F941 /* FilterTypeModel.swift in Sources */,
 				4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */,
 				4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */,
+				4D3AD57E272AD1C200D4F941 /* FilterTypeViewController.swift in Sources */,
 				4DEC73F92729C4F00005275E /* UIImage.swift in Sources */,
 				4DEC73F32729C3400005275E /* ContactModel.swift in Sources */,
 				4DEC73FB2729C52A0005275E /* ImageService.swift in Sources */,

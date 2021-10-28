@@ -20,4 +20,5 @@ struct Item: Codable {
     let department: String?
     let position: String?
     let birthday: String?
+    let phone: String?
 }

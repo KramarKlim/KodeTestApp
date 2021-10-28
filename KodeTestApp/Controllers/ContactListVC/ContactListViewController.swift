@@ -9,7 +9,7 @@ import UIKit
 
 class ContactListViewController: UIViewController {
     
-    var model: ContactListModelProtocol! = ContactListModel()
+    var model: ContactListModelProtocol = ContactListModel()
     
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -25,11 +25,6 @@ class ContactListViewController: UIViewController {
         super.viewDidLoad()
         setup()
         request()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        showSkeleton(for: ContactTableViewCell())
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -131,13 +126,7 @@ extension ContactListViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        let picker = UIViewController()
-        picker.view.backgroundColor = .white
-        if let sheet = picker.presentationController as? UISheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.prefersGrabberVisible = true
-        }
-        present(picker, animated: true, completion: nil)
+        present(FilterTypeViewController(), animated: true, completion: nil)
     }
 }
 
@@ -152,5 +141,17 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         let contact = model.contactModel(indexPath: indexPath)
         cell.model = contact
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        ContactTableView.deselectRow(at: indexPath, animated: true)
+        let profileModel = model.profileModel(inedxPath: indexPath)
+        performSegue(withIdentifier: "profile", sender: profileModel)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailVC = segue.destination as! ProfileViewController
+        detailVC.model = sender as? ProfileModelProtocol
+        navigationItem.backButtonTitle = ""
     }
 }
