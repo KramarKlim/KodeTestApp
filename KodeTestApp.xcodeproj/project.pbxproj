@@ -13,6 +13,7 @@
 		4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */; };
 		4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */; };
 		4D3AD58A272B2FBA00D4F941 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD589272B2FB900D4F941 /* String.swift */; };
+		4D3AD58D272BDB7A00D4F941 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD58C272BDB7A00D4F941 /* enum.swift */; };
 		4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BD2728944B0005275E /* AppDelegate.swift */; };
 		4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BF2728944B0005275E /* SceneDelegate.swift */; };
 		4DEC73C52728944B0005275E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C32728944B0005275E /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 		4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		4D3AD589272B2FB900D4F941 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4D3AD58C272BDB7A00D4F941 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
 		4DEC73BA2728944B0005275E /* KodeTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KodeTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEC73BD2728944B0005275E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DEC73BF2728944B0005275E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,24 @@
 			path = ProfileVC;
 			sourceTree = "<group>";
 		};
+		4D3AD58B272BDB6800D4F941 /* enum */ = {
+			isa = PBXGroup;
+			children = (
+				4D3AD58C272BDB7A00D4F941 /* enum.swift */,
+			);
+			path = enum;
+			sourceTree = "<group>";
+		};
+		4D3AD58E272BEE2E00D4F941 /* FilterVC */ = {
+			isa = PBXGroup;
+			children = (
+				4D3AD57C272AD1C200D4F941 /* FilterTypeViewController.swift */,
+				4D3AD582272B11A100D4F941 /* FilterTypeModel.swift */,
+				4D3AD57D272AD1C200D4F941 /* FilterTypeViewController.xib */,
+			);
+			path = FilterVC;
+			sourceTree = "<group>";
+		};
 		4DEC73B12728944B0005275E = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +125,7 @@
 			children = (
 				4DEC73BD2728944B0005275E /* AppDelegate.swift */,
 				4DEC73BF2728944B0005275E /* SceneDelegate.swift */,
+				4D3AD58B272BDB6800D4F941 /* enum */,
 				4DEC73F52729C4A20005275E /* extensions */,
 				4DEC73ED2729C0260005275E /* Model */,
 				4DEC73E32729740A0005275E /* Managers */,
@@ -131,9 +152,7 @@
 			children = (
 				4DEC73E127296A360005275E /* ContactListViewController.swift */,
 				4DEC73E8272983590005275E /* ContactListModel.swift */,
-				4D3AD57C272AD1C200D4F941 /* FilterTypeViewController.swift */,
-				4D3AD582272B11A100D4F941 /* FilterTypeModel.swift */,
-				4D3AD57D272AD1C200D4F941 /* FilterTypeViewController.xib */,
+				4D3AD58E272BEE2E00D4F941 /* FilterVC */,
 				4DEC73DC272967CA0005275E /* CollectionViewCell */,
 				4DEC73DB272967BC0005275E /* tableViewCell */,
 			);
@@ -272,6 +291,7 @@
 				4DEC73E227296A360005275E /* ContactListViewController.swift in Sources */,
 				4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */,
 				4DEC73EF2729C0370005275E /* User.swift in Sources */,
+				4D3AD58D272BDB7A00D4F941 /* enum.swift in Sources */,
 				4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */,
 				4DEC73DF272967E90005275E /* SortedListCollectionViewCell.swift in Sources */,
 				4D3AD583272B11A200D4F941 /* FilterTypeModel.swift in Sources */,

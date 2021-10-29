@@ -126,7 +126,11 @@ extension ContactListViewController: UISearchBarDelegate {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        present(FilterTypeViewController(), animated: true, completion: nil)
+        let filerVC = FilterTypeViewController()
+        let filterModel = FilterTypeModel(contacts: model.sortType)
+        filerVC.model = filterModel
+        filerVC.typeDelegate = self
+        present(filerVC, animated: true, completion: nil)
     }
 }
 
@@ -153,5 +157,13 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         let detailVC = segue.destination as! ProfileViewController
         detailVC.model = sender as? ProfileModelProtocol
         navigationItem.backButtonTitle = ""
+    }
+}
+
+extension ContactListViewController: SelectSortType {
+    func didSelectType(type: SortType) {
+        model.sortType = type
+        model.sortContact()
+        ContactTableView.reloadData()
     }
 }

@@ -13,6 +13,7 @@ protocol ContactListModelProtocol {
     var contacts: [Item] { get set }
     var filtered: [Item] { get set }
     var isSearching: Bool { get set }
+    var sortType: SortType { get set }
     
     func numberOfCells() -> Int
     func bugs(text: String) -> Bool
@@ -22,9 +23,12 @@ protocol ContactListModelProtocol {
     func getNumberOfRows() -> Int
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol?
     func profileModel(inedxPath: IndexPath) -> ProfileModelProtocol?
+    func sortContact()
 }
 
 class ContactListModel: ContactListModelProtocol {
+    
+    var sortType: SortType = .word
     
     var filtered: [Item] = []
     
@@ -59,9 +63,9 @@ class ContactListModel: ContactListModelProtocol {
     
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol? {
         if isSearching {
-            return ContactModel(contact: filtered[indexPath.row])
+            return ContactModel(contact: filtered[indexPath.row], type: sortType)
         } else {
-            return ContactModel(contact: contacts[indexPath.row])
+            return ContactModel(contact: contacts[indexPath.row], type: sortType)
         }
     }
     
@@ -79,6 +83,13 @@ class ContactListModel: ContactListModelProtocol {
             return ProfileModel(profile: filtered[inedxPath.row])
         } else {
             return ProfileModel(profile: contacts[inedxPath.row])
+        }
+    }
+    
+    func sortContact() {
+        switch sortType {
+        case .date: contacts = contacts.sorted{($0.birthday ?? "Неизвестно") < ($1.birthday ?? "Неизвестно")}
+        case .word: contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
         }
     }
 }

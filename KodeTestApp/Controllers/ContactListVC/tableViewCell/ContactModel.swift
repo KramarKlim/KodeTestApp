@@ -9,20 +9,25 @@ import Foundation
 
 protocol ContactModelProtocol {
     var contact: Item { get }
+    var type: SortType { get }
     
-    init(contact: Item)
+    init(contact: Item, type: SortType)
     
     func getImage() -> String
     func getName() -> String
     func getPosition() -> String
     func getTag() -> String
+    func getDay() -> String?
 }
 
 class ContactModel: ContactModelProtocol {
     var contact: Item
     
-    required init(contact: Item) {
+    var type: SortType
+    
+    required init(contact: Item, type: SortType) {
         self.contact = contact
+        self.type = type
     }
     
     func getImage() -> String {
@@ -41,5 +46,11 @@ class ContactModel: ContactModelProtocol {
         contact.userTag ?? "Неизвестно"
     }
     
-    
+    func getDay() -> String? {
+        if type == .word {
+          return nil
+        } else {
+            return contact.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd MMM" ) ?? "Неизвестно"
+        }
+    }
 }

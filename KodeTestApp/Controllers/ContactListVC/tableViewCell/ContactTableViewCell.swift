@@ -15,6 +15,7 @@ class ContactTableViewCell: UITableViewCell {
             nameLabel.text = model.getName()
             positionLabel.text = model.getPosition()
             tagLabel.text = model.getTag()
+            dayLabel.text = model.getDay()
         }
     }
     
@@ -33,6 +34,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var positionLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
+    @IBOutlet var dayLabel: UILabel!
     
     
 }
