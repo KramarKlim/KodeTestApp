@@ -41,7 +41,7 @@ class ContactListViewController: UIViewController {
     private func setupSearchBar() {
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.showsBookmarkButton = true
-        searchBar.setImage(UIImage(systemName: "list.bullet.indent"), for: .bookmark, state: .normal)
+        searchBar.setImage(UIImage(named: "sort"), for: .bookmark, state: .normal)
         searchBar.delegate = self
         searchBar.sizeToFit()
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
@@ -96,6 +96,10 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             cell1?.colorView.backgroundColor = .white
             self.model.lastActiveIndex = indexPath
         }
+        model.sortByProf(indexPath: indexPath)
+        model.sorted = true
+        print(indexPath.row)
+        ContactTableView.reloadData()
     }
 }
 
@@ -164,6 +168,7 @@ extension ContactListViewController: SelectSortType {
     func didSelectType(type: SortType) {
         model.sortType = type
         model.sortContact()
+        searchBar.setImage(UIImage(named: "sorted"), for: .bookmark, state: .normal)
         ContactTableView.reloadData()
     }
 }

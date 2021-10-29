@@ -38,7 +38,7 @@ class ProfileModel: ProfileModelProtocol {
     }
     
     func getTag() -> String {
-        profile.userTag ?? "Неизвестно"
+        profile.userTag?.lowercased() ?? "Неизвестно"
     }
     
     func getProf() -> String {

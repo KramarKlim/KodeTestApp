@@ -12,7 +12,7 @@ class DataManager {
     
     private init() {}
     
-    let sortingType = ["Все", "Designers", "Analysts", "Managers", "iOS", "Android", "QA", "Back-Officers", "Frotends", "HR", "Supports"]
+    let sortingType = ["Все", "Designers", "Analysts", "Managers", "iOS", "Android", "QA", "Back-Officers", "Frotends", "HR", "Supports", "PR"]
     
     
     let headers = [

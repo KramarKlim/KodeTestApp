@@ -43,7 +43,7 @@ class ContactModel: ContactModelProtocol {
     }
     
     func getTag() -> String {
-        contact.userTag ?? "Неизвестно"
+        contact.userTag?.lowercased() ?? "Неизвестно"
     }
     
     func getDay() -> String? {
