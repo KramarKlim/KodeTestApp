@@ -51,6 +51,8 @@ class ProfileViewController: UIViewController {
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        cancel.setValue(UIColor.black, forKey: "titleTextColor")
+        number.setValue(UIColor.black, forKey: "titleTextColor")
         alert.addAction(number)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
