@@ -46,7 +46,7 @@ class ProfileModel: ProfileModelProtocol {
     }
     
     func getYears() -> String {
-        (profile.birthday?.calcAge(dateFormatter: "yyyy-MM-dd") ?? "Неизвестно") + " " + "лет"
+        (profile.birthday?.calcAge(dateFormatter: "yyyy-MM-dd") ?? "Неизвестно") + " " + "года"
     }
     
     func getNumber() -> String {
@@ -56,10 +56,7 @@ class ProfileModel: ProfileModelProtocol {
     func getDate() -> String {
      let day = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd") ?? "Неизвестно"
         let monthEng = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM") ?? "Неизвестно"
-        print(day)
-        print(monthEng)
         guard let monthRus = MonthRussian.init(rawValue: monthEng) else { return "Неизвестно"}
-        print(monthRus)
         return day + " " + "\(monthRus)"
     }
     

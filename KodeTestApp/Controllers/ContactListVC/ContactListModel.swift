@@ -43,7 +43,7 @@ class ContactListModel: ContactListModelProtocol {
     
     var contacts: [Item] = []
     
-    var lastActiveIndex: IndexPath = [0,0]
+    var lastActiveIndex: IndexPath = [0,1]
     
     func numberOfCells() -> Int {
         DataManager.shared.sortingType.count

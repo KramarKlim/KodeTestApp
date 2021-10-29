@@ -98,7 +98,6 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
         }
         model.sortByProf(indexPath: indexPath)
         model.sorted = true
-        print(indexPath.row)
         ContactTableView.reloadData()
     }
 }
