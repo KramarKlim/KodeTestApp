@@ -15,6 +15,12 @@ class SortedListCollectionViewCell: UICollectionViewCell {
 
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.textColor = .lightGray
+        colorView.backgroundColor = .white
+    }
 
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var colorView: UIView!

@@ -81,6 +81,10 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sort", for: indexPath) as! SortedListCollectionViewCell
         let name = model.sortedList(indexPath: indexPath)
         cell.model = name
+        if indexPath == model.lastActiveIndex {
+            cell.colorView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+            cell.nameLabel.textColor = .black
+        }
         return cell
     }
     
