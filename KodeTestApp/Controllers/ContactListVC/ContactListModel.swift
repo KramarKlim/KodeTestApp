@@ -30,7 +30,7 @@ protocol ContactListModelProtocol {
 }
 
 class ContactListModel: ContactListModelProtocol {
-    
+        
     var sorted: Bool = false
     
     var prof: [Item] = []
