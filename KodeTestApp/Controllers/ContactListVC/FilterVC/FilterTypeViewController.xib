@@ -36,10 +36,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trv-Ir-EDD">
-                    <rect key="frame" x="24" y="133" width="174.5" height="38"/>
+                    <rect key="frame" x="24" y="133" width="176.5" height="38"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="Circle" title="  По алфавиту">
+                    <buttonConfiguration key="configuration" style="plain" image="Vector" title="  По алфавиту">
                         <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="20"/>
                     </buttonConfiguration>
                     <connections>
@@ -75,7 +75,6 @@
     </objects>
     <resources>
         <image name="Back" width="7" height="11"/>
-        <image name="Circle" width="20" height="20"/>
         <image name="Vector" width="22" height="22"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

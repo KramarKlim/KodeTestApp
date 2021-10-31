@@ -12,7 +12,7 @@ protocol ProfileModelProtocol {
     
     init(profile: Item)
     
-    func getImage() -> String
+    func getImage() -> String?
     func getName() -> String
     func getTag() -> String
     func getProf() -> String
@@ -29,8 +29,8 @@ class ProfileModel: ProfileModelProtocol {
         self.profile = profile
     }
     
-    func getImage() -> String {
-        profile.avatarUrl ?? DataManager.shared.imageError
+    func getImage() -> String? {
+        profile.avatarUrl
     }
     
     func getName() -> String {
@@ -46,7 +46,7 @@ class ProfileModel: ProfileModelProtocol {
     }
     
     func getYears() -> String {
-        (profile.birthday?.calcAge(dateFormatter: "yyyy-MM-dd") ?? "Неизвестно") + " " + "года"
+        (profile.birthday?.calcAge(dateFormatter: "yyyy-MM-dd") ?? "Неизвестно") + " " + (profile.birthday?.calcAge(dateFormatter: "yyyy-MM-dd").rightYear() ?? "Неизвестно")
     }
     
     func getNumber() -> String {
@@ -56,8 +56,9 @@ class ProfileModel: ProfileModelProtocol {
     func getDate() -> String {
      let day = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd") ?? "Неизвестно"
         let monthEng = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM") ?? "Неизвестно"
-        guard let monthRus = MonthRussian.init(rawValue: monthEng) else { return "Неизвестно"}
-        return day + " " + "\(monthRus)"
+        let year = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "yyyy") ?? "Неизвестно"
+        guard let month = MonthRussian.init(rawValue: monthEng) else { return "Неизвестно"}
+        return day + " " + "\(month.russianTranslate)" + " " + year
     }
     
     func numberToCall() -> String {

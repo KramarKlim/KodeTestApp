@@ -35,7 +35,7 @@ class ContactListModel: ContactListModelProtocol {
     
     var prof: [Item] = []
     
-    var sortType: SortType = .word
+    var sortType: SortType = .nothing
     
     var filtered: [Item] = []
     
@@ -55,7 +55,7 @@ class ContactListModel: ContactListModelProtocol {
     
     func fetchRequest(completion: @escaping () -> Void) {
         NetworkManager.shared.fetchNetwork(headers: DataManager.shared.headers, request: DataManager.shared.request, expecting: User.self) { [self] user in
-            self.contacts = user.items?.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")} ?? []
+            self.contacts = user.items ?? []
             completion()
         }
     }
@@ -106,13 +106,15 @@ class ContactListModel: ContactListModelProtocol {
     func sortContact() {
         if sorted == false {
         switch sortType {
-        case .date: contacts = contacts.sorted{($0.birthday ?? "Неизвестно") < ($1.birthday ?? "Неизвестно")}
+        case .date: contacts = contacts.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно")}
         case .word: contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
+        case .nothing: break
         }
         } else {
             switch sortType {
-            case .date: prof = prof.sorted{($0.birthday ?? "Неизвестно") < ($1.birthday ?? "Неизвестно")}
+            case .date: prof = prof.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно")}
             case .word: prof = prof.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
+            case .nothing: break
             }
         }
     }

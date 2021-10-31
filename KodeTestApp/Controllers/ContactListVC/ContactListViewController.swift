@@ -44,7 +44,7 @@ class ContactListViewController: UIViewController {
         searchBar.setImage(UIImage(named: "sort"), for: .bookmark, state: .normal)
         searchBar.delegate = self
         searchBar.sizeToFit()
-        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.customPurple
         searchBar.setValue("Отмена", forKey: "cancelButtonText")
     }
     
@@ -82,7 +82,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
         let name = model.sortedList(indexPath: indexPath)
         cell.model = name
         if indexPath == model.lastActiveIndex {
-            cell.colorView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+            cell.colorView.backgroundColor = UIColor.customPurple
             cell.nameLabel.textColor = .black
         }
         return cell
@@ -93,7 +93,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             
             let cell = collectionView.cellForItem(at: indexPath) as! SortedListCollectionViewCell
             cell.nameLabel.textColor = .black
-            cell.colorView.backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+            cell.colorView.backgroundColor = UIColor.customPurple
             
             let cell1 = collectionView.cellForItem(at: model.lastActiveIndex) as? SortedListCollectionViewCell
             cell1?.nameLabel.textColor = .lightGray
@@ -149,6 +149,7 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath) as! ContactTableViewCell
+        cell.selectionStyle = .none
         let contact = model.contactModel(indexPath: indexPath)
         cell.model = contact
         return cell

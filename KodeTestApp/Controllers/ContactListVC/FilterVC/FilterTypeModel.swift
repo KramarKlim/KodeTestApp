@@ -17,7 +17,7 @@ protocol FilterTypeModelProtocol {
 }
 
 class FilterTypeModel: FilterTypeModelProtocol {
-    var contacts: SortType = .word
+    var contacts: SortType = .nothing
     
     required init(contacts: SortType) {
         self.contacts = contacts
@@ -30,6 +30,9 @@ class FilterTypeModel: FilterTypeModelProtocol {
             word.setImage(UIImage(named: "Vector"), for: .normal)
         case .word:
             word.setImage(UIImage(named: "Circle"), for: .normal)
+            date.setImage(UIImage(named: "Vector"), for: .normal)
+        case .nothing:
+            word.setImage(UIImage(named: "Vector"), for: .normal)
             date.setImage(UIImage(named: "Vector"), for: .normal)
         }
     }

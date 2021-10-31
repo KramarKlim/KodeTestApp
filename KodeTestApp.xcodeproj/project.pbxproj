@@ -13,10 +13,11 @@
 		4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */; };
 		4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */; };
 		4D3AD58A272B2FBA00D4F941 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD589272B2FB900D4F941 /* String.swift */; };
-		4D3AD58D272BDB7A00D4F941 /* enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD58C272BDB7A00D4F941 /* enum.swift */; };
+		4D3AD58D272BDB7A00D4F941 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD58C272BDB7A00D4F941 /* enums.swift */; };
 		4D3AD5C6272D75FB00D4F941 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD5C4272D75FB00D4F941 /* ErrorViewController.swift */; };
 		4D3AD5C7272D75FB00D4F941 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3AD5C5272D75FB00D4F941 /* ErrorViewController.xib */; };
 		4D3AD5E9272DB90500D4F941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C62728944E0005275E /* Assets.xcassets */; };
+		4D3AD5EB272DD68200D4F941 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD5EA272DD68100D4F941 /* UIColor.swift */; };
 		4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BD2728944B0005275E /* AppDelegate.swift */; };
 		4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BF2728944B0005275E /* SceneDelegate.swift */; };
 		4DEC73C52728944B0005275E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C32728944B0005275E /* Main.storyboard */; };
@@ -44,9 +45,10 @@
 		4D3AD585272B1E3100D4F941 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D3AD587272B1E3C00D4F941 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		4D3AD589272B2FB900D4F941 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		4D3AD58C272BDB7A00D4F941 /* enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enum.swift; sourceTree = "<group>"; };
+		4D3AD58C272BDB7A00D4F941 /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		4D3AD5C4272D75FB00D4F941 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		4D3AD5C5272D75FB00D4F941 /* ErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
+		4D3AD5EA272DD68100D4F941 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		4DEC73BA2728944B0005275E /* KodeTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KodeTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEC73BD2728944B0005275E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DEC73BF2728944B0005275E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,7 +95,7 @@
 		4D3AD58B272BDB6800D4F941 /* enum */ = {
 			isa = PBXGroup;
 			children = (
-				4D3AD58C272BDB7A00D4F941 /* enum.swift */,
+				4D3AD58C272BDB7A00D4F941 /* enums.swift */,
 			);
 			path = enum;
 			sourceTree = "<group>";
@@ -215,6 +217,7 @@
 		4DEC73F52729C4A20005275E /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4D3AD5EA272DD68100D4F941 /* UIColor.swift */,
 				4DEC73F82729C4F00005275E /* UIImage.swift */,
 				4D3AD589272B2FB900D4F941 /* String.swift */,
 			);
@@ -303,11 +306,12 @@
 				4DEC73E9272983590005275E /* ContactListModel.swift in Sources */,
 				4DEC73F72729C4D80005275E /* ImageFetch.swift in Sources */,
 				4DEC73E5272974180005275E /* DataManager.swift in Sources */,
+				4D3AD5EB272DD68200D4F941 /* UIColor.swift in Sources */,
 				4D3AD5C6272D75FB00D4F941 /* ErrorViewController.swift in Sources */,
 				4DEC73E227296A360005275E /* ContactListViewController.swift in Sources */,
 				4D3AD586272B1E3100D4F941 /* ProfileViewController.swift in Sources */,
 				4DEC73EF2729C0370005275E /* User.swift in Sources */,
-				4D3AD58D272BDB7A00D4F941 /* enum.swift in Sources */,
+				4D3AD58D272BDB7A00D4F941 /* enums.swift in Sources */,
 				4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */,
 				4DEC73DF272967E90005275E /* SortedListCollectionViewCell.swift in Sources */,
 				4D3AD583272B11A200D4F941 /* FilterTypeModel.swift in Sources */,

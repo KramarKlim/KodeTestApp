@@ -11,7 +11,7 @@ class ContactTableViewCell: UITableViewCell {
     
     var model: ContactModelProtocol! {
         didSet {
-            profileImage.fetchImage(from: model.getImage())
+            setupImage()
             nameLabel.text = model.getName()
             positionLabel.text = model.getPosition()
             tagLabel.text = model.getTag()
@@ -36,5 +36,11 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet var tagLabel: UILabel!
     @IBOutlet var dayLabel: UILabel!
     
-    
+    private func setupImage() {
+        if model.getImage() == nil {
+            profileImage.image = UIImage(named: "Goose")
+        } else {
+        profileImage.fetchImage(from: model.getImage()!)
+        }
+    }
 }

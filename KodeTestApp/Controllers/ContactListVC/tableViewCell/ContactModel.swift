@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ContactModelProtocol {
     var contact: Item { get }
@@ -13,7 +14,7 @@ protocol ContactModelProtocol {
     
     init(contact: Item, type: SortType)
     
-    func getImage() -> String
+    func getImage() -> String?
     func getName() -> String
     func getPosition() -> String
     func getTag() -> String
@@ -30,8 +31,8 @@ class ContactModel: ContactModelProtocol {
         self.type = type
     }
     
-    func getImage() -> String {
-        contact.avatarUrl ?? DataManager.shared.imageError
+    func getImage() -> String? {
+        contact.avatarUrl 
     }
     
     func getName() -> String {
@@ -47,7 +48,7 @@ class ContactModel: ContactModelProtocol {
     }
     
     func getDay() -> String? {
-        if type == .word {
+        if type == .word || type == .nothing {
           return nil
         } else {
             return contact.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd MMM" ) ?? "Неизвестно"

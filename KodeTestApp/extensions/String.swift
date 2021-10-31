@@ -31,21 +31,34 @@ extension String {
     func format(with mask: String) -> String {
         let numbers = "7\(self)".replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
-        var index = numbers.startIndex // numbers iterator
-
-        // iterate over the mask characters until the iterator of numbers ends
+        var index = numbers.startIndex
         for ch in mask where index < numbers.endIndex {
             if ch == "X" {
-                // mask requires a number in this place, so take the next one
                 result.append(numbers[index])
-
-                // move numbers iterator to the next index
                 index = numbers.index(after: index)
 
             } else {
-                result.append(ch) // just append a mask character
+                result.append(ch)
             }
         }
         return result
+    }
+    
+    func rightYear() -> String {
+        guard self != "1" else { return "год" }
+        guard self != "11" else { return "лет"}
+        guard self != "12" else { return "лет"}
+        guard self != "13" else { return "лет"}
+        guard self != "14" else { return "лет"}
+
+        guard let number = Int(self) else { return "Неизвестно" }
+        print(number % 10)
+        switch number % 10 {
+        case 0: return "лет"
+        case 5...9: return "лет"
+        case 1...4: return "года"
+        default: break
+        }
+        return "Неизвестно"
     }
 }

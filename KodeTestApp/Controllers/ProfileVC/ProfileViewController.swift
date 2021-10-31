@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setup() {
-        profileImage.fetchImage(from: model.getImage())
+        setupImage()
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
         nameLabel.text = model.getName()
         tagLabel.text = model.getTag()
@@ -34,6 +34,14 @@ class ProfileViewController: UIViewController {
         dateLabel.text = model.getDate()
         yearsLabel.text = model.getYears()
         phoneButton.setTitle(model.getNumber(), for: .normal)
+    }
+    
+    private func setupImage() {
+        if model.getImage() == nil {
+            profileImage.image = UIImage(named: "Goose")
+        } else {
+            profileImage.fetchImage(from: model.getImage()!)
+        }
     }
     
     @IBAction func phoneButtonAction(_ sender: UIButton) {
