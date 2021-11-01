@@ -25,7 +25,14 @@ class ContactListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        model.checkInternet()
         setup()
+        request()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        model.checkInternet()
         request()
     }
     
@@ -66,13 +73,18 @@ class ContactListViewController: UIViewController {
     }
     
     private func request() {
-        model.fetchRequest { [weak self] in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.ContactTableView.reloadData()
-                self.ContactTableView.hideSkeleton()
-                self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+        if model.internet == true {
+            model.fetchRequest { [weak self] in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    self.ContactTableView.reloadData()
+                    self.ContactTableView.hideSkeleton()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                }
             }
+        } else {
+            navigationController?.pushViewController(ErrorViewController(), animated: false)
+            
         }
     }
 }
