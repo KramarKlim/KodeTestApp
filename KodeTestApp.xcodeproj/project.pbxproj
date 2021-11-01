@@ -18,6 +18,7 @@
 		4D3AD5C7272D75FB00D4F941 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3AD5C5272D75FB00D4F941 /* ErrorViewController.xib */; };
 		4D3AD5E9272DB90500D4F941 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C62728944E0005275E /* Assets.xcassets */; };
 		4D3AD5EB272DD68200D4F941 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3AD5EA272DD68100D4F941 /* UIColor.swift */; };
+		4D536BC927305BC0008AA690 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D536BC827305BC0008AA690 /* NetworkDataFetcher.swift */; };
 		4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BD2728944B0005275E /* AppDelegate.swift */; };
 		4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC73BF2728944B0005275E /* SceneDelegate.swift */; };
 		4DEC73C52728944B0005275E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DEC73C32728944B0005275E /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		4D3AD5C4272D75FB00D4F941 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		4D3AD5C5272D75FB00D4F941 /* ErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
 		4D3AD5EA272DD68100D4F941 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		4D536BC827305BC0008AA690 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
 		4DEC73BA2728944B0005275E /* KodeTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KodeTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DEC73BD2728944B0005275E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DEC73BF2728944B0005275E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				4DEC73E4272974180005275E /* DataManager.swift */,
 				4DEC73F02729C0660005275E /* NetworkManager.swift */,
+				4D536BC827305BC0008AA690 /* NetworkDataFetcher.swift */,
 				4DEC73F62729C4D80005275E /* ImageFetch.swift */,
 				4DEC73FA2729C52A0005275E /* ImageService.swift */,
 			);
@@ -237,7 +240,6 @@
 				AC8059F9BDC3D7FF16344A6D /* Pods-KodeTestApp.debug.xcconfig */,
 				291982E7B4899CFEAFB49652 /* Pods-KodeTestApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -383,6 +385,7 @@
 				4D3AD58D272BDB7A00D4F941 /* enums.swift in Sources */,
 				4D3AD588272B1E3C00D4F941 /* ProfileModel.swift in Sources */,
 				4DEC73DF272967E90005275E /* SortedListCollectionViewCell.swift in Sources */,
+				4D536BC927305BC0008AA690 /* NetworkDataFetcher.swift in Sources */,
 				4D3AD583272B11A200D4F941 /* FilterTypeModel.swift in Sources */,
 				4DEC73BE2728944B0005275E /* AppDelegate.swift in Sources */,
 				4DEC73C02728944B0005275E /* SceneDelegate.swift in Sources */,

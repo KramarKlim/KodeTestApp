@@ -25,4 +25,9 @@ class DataManager {
                                       timeoutInterval: 10.0)
     let imageError = "https://thumbs.dreamstime.com/b/вектор-значка-профиля-аватары-по-умолчанию-неизвестное-социальное-184816085.jpg"
     
+    let errorHeader = [
+        "Content-Type": "application/json",
+        "Prefer": "code=500, example=error-500"
+    ]
+    
 }

@@ -15,7 +15,6 @@ class ContactListViewController: UIViewController {
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        refreshControl.tintColor = .customPurple
         return refreshControl
     }()
     
@@ -80,11 +79,13 @@ class ContactListViewController: UIViewController {
                     self.ContactTableView.reloadData()
                     self.ContactTableView.hideSkeleton()
                     self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    if self.model.internet == false {
+                        self.navigationController?.pushViewController(ErrorViewController(), animated: false)
+                    }
                 }
             }
         } else {
             navigationController?.pushViewController(ErrorViewController(), animated: false)
-            
         }
     }
 }
