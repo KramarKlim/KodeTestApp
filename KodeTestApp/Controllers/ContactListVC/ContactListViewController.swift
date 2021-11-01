@@ -24,15 +24,16 @@ class ContactListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.checkInternet()
         setup()
         request()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        model.checkInternet()
-        request()
+        if model.internet == false {
+            setupTableView()
+            request()
+        }
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
@@ -72,20 +73,16 @@ class ContactListViewController: UIViewController {
     }
     
     private func request() {
-        if model.internet == true {
-            model.fetchRequest { [weak self] in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    self.ContactTableView.reloadData()
-                    self.ContactTableView.hideSkeleton()
-                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                    if self.model.internet == false {
-                        self.navigationController?.pushViewController(ErrorViewController(), animated: false)
-                    }
+        model.fetchRequest { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.ContactTableView.reloadData()
+                self.ContactTableView.hideSkeleton()
+                self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                if self.model.internet == false {
+                    self.navigationController?.pushViewController(ErrorViewController(), animated: false)
                 }
             }
-        } else {
-            navigationController?.pushViewController(ErrorViewController(), animated: false)
         }
     }
 }

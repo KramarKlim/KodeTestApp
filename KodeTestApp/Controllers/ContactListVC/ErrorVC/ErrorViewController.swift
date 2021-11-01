@@ -13,6 +13,7 @@ class ErrorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.tintColor = .customPurple
         self.navigationItem.hidesBackButton = true
     }
 

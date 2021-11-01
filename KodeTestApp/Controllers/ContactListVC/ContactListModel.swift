@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Network
 
 protocol ContactListModelProtocol {
     var lastActiveIndex: IndexPath { get set }
@@ -29,11 +28,10 @@ protocol ContactListModelProtocol {
     func profileModel(inedxPath: IndexPath) -> ProfileModelProtocol?
     func sortContact()
     func sortByProf(indexPath: IndexPath)
-    func checkInternet()
 }
 
 class ContactListModel: ContactListModelProtocol {
-    
+        
     var internet: Bool = true
                 
     var sorted: Bool = false
@@ -60,10 +58,13 @@ class ContactListModel: ContactListModelProtocol {
     
     func fetchRequest(completion: @escaping () -> Void) {
         NetworkDataFetcher.shared.getData(headers: DataManager.shared.headers, request: DataManager.shared.request, decodeType: User.self) { result in
+            print("АТЫД \(result)")
+            self.internet = true
             if result?.items == nil {
                 self.internet = false
             } else {
             self.contacts = result?.items ?? []
+                self.internet = true
             }
             completion()
         }
@@ -144,19 +145,5 @@ class ContactListModel: ContactListModelProtocol {
         case 11: prof = contacts.filter{$0.department == "pr"}
         default: break
         }
-    }
-    
-    func checkInternet() {
-        let monitor = NWPathMonitor()
-        let queue = DispatchQueue(label: "InternetConnectionMonitor")
-        
-        monitor.pathUpdateHandler = { pathUpdateHandler in
-            if pathUpdateHandler.status == .satisfied {
-                self.internet = true
-            } else {
-                self.internet = false
-            }
-        }
-        monitor.start(queue: queue)
     }
 }

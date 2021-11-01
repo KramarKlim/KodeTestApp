@@ -30,4 +30,9 @@ class DataManager {
         "Prefer": "code=500, example=error-500"
     ]
     
+    let randomHeader = [
+        "Content-Type": "application/json",
+        "Prefer": "code=200, dynamic=true"
+    ]
+    
 }
