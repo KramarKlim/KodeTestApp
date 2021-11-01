@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ContactTableViewCell: UITableViewCell {
     
@@ -28,6 +29,8 @@ class ContactTableViewCell: UITableViewCell {
         super.awakeFromNib()
         profileImage.layer.cornerRadius = 36
         profileImage.clipsToBounds = true
+        nameLabel.linesCornerRadius = 8
+        positionLabel.linesCornerRadius = 8
     }
 
     @IBOutlet var profileImage: UIImageView!

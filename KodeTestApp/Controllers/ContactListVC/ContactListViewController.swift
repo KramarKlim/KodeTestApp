@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ContactListViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class ContactListViewController: UIViewController {
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        refreshControl.tintColor = .customPurple
         return refreshControl
     }()
     
@@ -59,6 +61,8 @@ class ContactListViewController: UIViewController {
         ContactTableView.dataSource = self
         ContactTableView.register(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: "contact")
         ContactTableView.refreshControl = refreshControl
+        ContactTableView.isSkeletonable = true
+        ContactTableView.showSkeleton(usingColor: .lightGray, animated: true, delay: 0, transition: .crossDissolve(0.25))
     }
     
     private func request() {
@@ -66,6 +70,8 @@ class ContactListViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.ContactTableView.reloadData()
+                self.ContactTableView.hideSkeleton()
+                self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
             }
         }
     }
@@ -141,7 +147,12 @@ extension ContactListViewController: UISearchBarDelegate {
     }
 }
 
-extension ContactListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        "contact"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         model.getNumberOfRows()
     }

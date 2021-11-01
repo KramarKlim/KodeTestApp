@@ -45,7 +45,6 @@ extension String {
     }
     
     func rightYear() -> String {
-        guard self != "1" else { return "год" }
         guard self != "11" else { return "лет"}
         guard self != "12" else { return "лет"}
         guard self != "13" else { return "лет"}
@@ -56,7 +55,8 @@ extension String {
         switch number % 10 {
         case 0: return "лет"
         case 5...9: return "лет"
-        case 1...4: return "года"
+        case 2...4: return "года"
+        case 1: return "год"
         default: break
         }
         return "Неизвестно"
