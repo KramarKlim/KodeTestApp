@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol AgainRequest {
+    func needToReload()
+}
+
 class ErrorViewController: UIViewController {
+    
+    var reload: AgainRequest!
 
     @IBOutlet var backButton: UIButton!
     
@@ -18,6 +24,7 @@ class ErrorViewController: UIViewController {
     }
 
     @IBAction func backButtonAction(_ sender: Any) {
+        reload.needToReload()
         self.navigationController?.popViewController(animated: false)
     }
     

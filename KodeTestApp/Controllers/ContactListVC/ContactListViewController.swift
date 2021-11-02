@@ -28,14 +28,6 @@ class ContactListViewController: UIViewController {
         request()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if model.internet == false {
-            setupTableView()
-            request()
-        }
-    }
-    
     @objc private func refresh(sender: UIRefreshControl) {
         ContactTableView.reloadData()
         refreshControl.endRefreshing()
@@ -80,7 +72,9 @@ class ContactListViewController: UIViewController {
                 self.ContactTableView.hideSkeleton()
                 self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 if self.model.internet == false {
-                    self.navigationController?.pushViewController(ErrorViewController(), animated: false)
+                    let error = ErrorViewController()
+                    error.reload = self
+                    self.navigationController?.pushViewController(error, animated: false)
                 }
             }
         }
@@ -195,5 +189,12 @@ extension ContactListViewController: SelectSortType {
         model.sortContact()
         searchBar.setImage(UIImage(named: "sorted"), for: .bookmark, state: .normal)
         ContactTableView.reloadData()
+    }
+}
+
+extension ContactListViewController: AgainRequest {
+    func needToReload() {
+        setupTableView()
+        request()
     }
 }
