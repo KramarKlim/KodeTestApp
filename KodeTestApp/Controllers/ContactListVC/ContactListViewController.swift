@@ -11,16 +11,20 @@ import SkeletonView
 class ContactListViewController: UIViewController {
     
     var model: ContactListModelProtocol = ContactListModel()
-    
+        
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        refreshControl.addSubview(GrayCircleView(frame: CGRect(x: refreshControl.center.x+18, y: refreshControl.center.y, width: 20, height: 20)))
+
+        refreshControl.addSubview(SpinnerView(frame: CGRect(x: refreshControl.center.x+18, y: refreshControl.center.y, width: 20, height: 20)))
+        refreshControl.tintColor = .clear
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var sortContactsCollectionView: UICollectionView!
-    @IBOutlet var ContactTableView: UITableView!
+    @IBOutlet var contactTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +33,7 @@ class ContactListViewController: UIViewController {
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        ContactTableView.reloadData()
+        contactTableView.reloadData()
         refreshControl.endRefreshing()
     }
     
@@ -56,20 +60,20 @@ class ContactListViewController: UIViewController {
     }
     
     private func setupTableView() {
-        ContactTableView.delegate = self
-        ContactTableView.dataSource = self
-        ContactTableView.register(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: "contact")
-        ContactTableView.refreshControl = refreshControl
-        ContactTableView.isSkeletonable = true
-        ContactTableView.showSkeleton(usingColor: .lightGray, animated: true, delay: 0, transition: .crossDissolve(0.25))
+        contactTableView.delegate = self
+        contactTableView.dataSource = self
+        contactTableView.register(UINib(nibName: "ContactTableViewCell", bundle: nil), forCellReuseIdentifier: "contact")
+        contactTableView.refreshControl = refreshControl
+        contactTableView.isSkeletonable = true
+        contactTableView.showSkeleton(usingColor: .lightGray, animated: true, delay: 0, transition: .crossDissolve(0.25))
     }
     
     private func request() {
         model.fetchRequest { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.ContactTableView.reloadData()
-                self.ContactTableView.hideSkeleton()
+                self.contactTableView.reloadData()
+                self.contactTableView.hideSkeleton()
                 self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                 if self.model.internet == false {
                     let error = ErrorViewController()
@@ -112,7 +116,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
         }
         model.sortByProf(indexPath: indexPath)
         model.sorted = true
-        ContactTableView.reloadData()
+        contactTableView.reloadData()
     }
 }
 
@@ -121,11 +125,11 @@ extension ContactListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         model.didChanged(text: searchText)
         if model.filtered.isEmpty && model.isSearching {
-            ContactTableView.isHidden = true
+            contactTableView.isHidden = true
         } else {
-            ContactTableView.isHidden = false
+            contactTableView.isHidden = false
         }
-        ContactTableView.reloadData()
+        contactTableView.reloadData()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -137,9 +141,9 @@ extension ContactListViewController: UISearchBarDelegate {
         searchBar.showsBookmarkButton = true
         searchBar.text = nil
         searchBar.endEditing(true)
-        ContactTableView.isHidden = false
+        contactTableView.isHidden = false
         model.isSearching = false
-        ContactTableView.reloadData()
+        contactTableView.reloadData()
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
@@ -171,7 +175,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ContactTableView.deselectRow(at: indexPath, animated: true)
+        contactTableView.deselectRow(at: indexPath, animated: true)
         let profileModel = model.profileModel(inedxPath: indexPath)
         performSegue(withIdentifier: "profile", sender: profileModel)
     }
@@ -188,7 +192,7 @@ extension ContactListViewController: SelectSortType {
         model.sortType = type
         model.sortContact()
         searchBar.setImage(UIImage(named: "sorted"), for: .bookmark, state: .normal)
-        ContactTableView.reloadData()
+        contactTableView.reloadData()
     }
 }
 

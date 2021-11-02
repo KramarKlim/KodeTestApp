@@ -57,7 +57,7 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func fetchRequest(completion: @escaping () -> Void) {
-        NetworkDataFetcher.shared.getData(headers: DataManager.shared.randomHeader, request: DataManager.shared.request, decodeType: User.self) { result in
+        NetworkDataFetcher.shared.getData(headers: DataManager.shared.headers, request: DataManager.shared.request, decodeType: User.self) { result in
             self.internet = true
             if result?.items == nil {
                 self.internet = false
