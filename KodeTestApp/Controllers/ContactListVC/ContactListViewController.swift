@@ -38,8 +38,26 @@ class ContactListViewController: UIViewController {
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
-        contactTableView.reloadData()
-        refreshControl.endRefreshing()
+        model.fetchRequest { [weak self] in
+            guard let self = self else { return}
+            DispatchQueue.main.async {
+                if self.model.isError == false {
+                    let window = UIApplication.shared.windows.last!
+                    let viewToShow = ErrorView(frame: CGRect(x: 0, y: 0, width: window.frame.size.width, height: window.frame.size.height / 9))
+                    viewToShow.backgroundColor = UIColor.red
+                    window.addSubview(viewToShow)
+                    let top = CGAffineTransform(translationX: 0, y: -300)
+                    Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { (_) in
+                        UIWindow.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
+                              viewToShow.transform = top
+                        }, completion: nil)
+                    }
+                } else {
+                    self.contactTableView.reloadData()
+                }
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     private func setup() {
