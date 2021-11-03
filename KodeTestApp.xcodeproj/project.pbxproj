@@ -94,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D2894142731B93A00221AAA /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				4D2894102731461500221AAA /* GrayCircleView.swift */,
+				4D28941227316AC300221AAA /* SpinnerView.swift */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
 		4D3AD584272B1E1E00D4F941 /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +162,7 @@
 			children = (
 				4DEC73BD2728944B0005275E /* AppDelegate.swift */,
 				4DEC73BF2728944B0005275E /* SceneDelegate.swift */,
+				4D2894142731B93A00221AAA /* UIViews */,
 				4D3AD58B272BDB6800D4F941 /* enum */,
 				4DEC73F52729C4A20005275E /* extensions */,
 				4DEC73ED2729C0260005275E /* Model */,
@@ -180,8 +190,6 @@
 			children = (
 				4DEC73E127296A360005275E /* ContactListViewController.swift */,
 				4DEC73E8272983590005275E /* ContactListModel.swift */,
-				4D2894102731461500221AAA /* GrayCircleView.swift */,
-				4D28941227316AC300221AAA /* SpinnerView.swift */,
 				4D3AD5C8272D760000D4F941 /* ErrorVC */,
 				4D3AD58E272BEE2E00D4F941 /* FilterVC */,
 				4DEC73DC272967CA0005275E /* CollectionViewCell */,

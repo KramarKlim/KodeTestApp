@@ -34,6 +34,7 @@ class ProfileViewController: UIViewController {
         dateLabel.text = model.getDate()
         yearsLabel.text = model.getYears()
         phoneButton.setTitle(model.getNumber(), for: .normal)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func setupImage() {

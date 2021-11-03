@@ -42,3 +42,37 @@ enum MonthRussian: String {
         }
     }
 }
+
+enum CriticalError {
+    case success, random, error
+}
+
+enum Professions: String {
+    case android = "Android"
+    case design = "Designers"
+    case analytics = "Analysts"
+    case management = "Managers"
+    case ios = "iOS"
+    case qa = "QA"
+    case back_office = "Back-Officers"
+    case frontend = "Frotends"
+    case hr = "HR"
+    case support = "Supports"
+    case pr = "PR"
+    
+    var description: String {
+        switch self {
+        case .android: return "android"
+        case .design: return "design"
+        case .analytics: return "analytics"
+        case .management: return "management"
+        case .ios: return "ios"
+        case .qa: return "qa"
+        case .back_office: return "back_office"
+        case .frontend: return "frontend"
+        case .hr: return "hr"
+        case .support: return "support"
+        case .pr: return "pr"
+        }
+    }
+}

@@ -32,6 +32,11 @@ class ContactListViewController: UIViewController {
         request()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     @objc private func refresh(sender: UIRefreshControl) {
         contactTableView.reloadData()
         refreshControl.endRefreshing()
@@ -75,7 +80,7 @@ class ContactListViewController: UIViewController {
                 self.contactTableView.reloadData()
                 self.contactTableView.hideSkeleton()
                 self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-                if self.model.internet == false {
+                if self.model.isError == false {
                     let error = ErrorViewController()
                     error.reload = self
                     self.navigationController?.pushViewController(error, animated: false)
@@ -115,7 +120,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             self.model.lastActiveIndex = indexPath
         }
         model.sortByProf(indexPath: indexPath)
-        model.sorted = true
+        model.isSorted = true
         contactTableView.reloadData()
     }
 }
@@ -176,7 +181,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         contactTableView.deselectRow(at: indexPath, animated: true)
-        let profileModel = model.profileModel(inedxPath: indexPath)
+        let profileModel = model.profileModel(indexPath: indexPath)
         performSegue(withIdentifier: "profile", sender: profileModel)
     }
     

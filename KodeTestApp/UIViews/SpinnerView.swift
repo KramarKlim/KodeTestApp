@@ -23,7 +23,7 @@ class SpinnerView: UIView {
           super.layoutSubviews()
           layer.fillColor = nil
           layer.strokeColor = UIColor.customPurple.cgColor
-          layer.lineWidth = 4
+          layer.lineWidth = 2
           setPath()
       }
 
