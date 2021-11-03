@@ -17,18 +17,24 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
     
     var typeDelegate: SelectSortType!
     
+    @available(iOS 15.0, *)
     override var sheetPresentationController: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
     
     @IBOutlet var wordButtom: UIButton!
     @IBOutlet var dateButton: UIButton!
-    @IBOutlet var backButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        if #available(iOS 15.0, *) {
+            setup()
+        } else {
+            wordButtom.tintColor = .customPurple
+            dateButton.tintColor = .customPurple
+            model.imageButton(word: wordButtom, date: dateButton)
+        }
     }
 
 
@@ -48,12 +54,13 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
         dismiss(animated: true)
     }
     
+    @available(iOS 15.0, *)
     private func setup() {
         view.backgroundColor = .white
         setupSheetPresentation()
-        model.imageButton(word: wordButtom, date: dateButton)
     }
     
+    @available(iOS 15.0, *)
     private func setupSheetPresentation() {
         sheetPresentationController.delegate = self
         sheetPresentationController.selectedDetentIdentifier = .large

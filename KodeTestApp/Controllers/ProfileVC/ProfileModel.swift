@@ -50,7 +50,7 @@ class ProfileModel: ProfileModelProtocol {
     }
     
     func getNumber() -> String {
-        profile.phone?.format(with: "+X (XXX) XXX XX XX") ?? "Неизвестно"
+        profile.phone?.format(with: "  +X (XXX) XXX XX XX") ?? "Неизвестно"
     }
     
     func getDate() -> String {

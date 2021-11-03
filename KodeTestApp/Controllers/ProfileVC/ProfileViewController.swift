@@ -19,11 +19,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet var yearsLabel: UILabel!
     @IBOutlet var phoneButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
+    
+    @IBAction func backButtonAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     private func setup() {
         setupImage()

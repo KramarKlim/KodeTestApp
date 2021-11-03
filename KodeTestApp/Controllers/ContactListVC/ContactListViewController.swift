@@ -74,6 +74,8 @@ class ContactListViewController: UIViewController {
         searchBar.sizeToFit()
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.customPurple
         searchBar.setValue("Отмена", forKey: "cancelButtonText")
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 248.0/255.0, alpha: 1)
     }
     
     private func setupCollectionView() {
