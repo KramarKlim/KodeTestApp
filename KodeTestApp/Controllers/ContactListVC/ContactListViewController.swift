@@ -136,7 +136,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             self.model.lastActiveIndex = indexPath
         }
         model.sortByProf(indexPath: indexPath)
-        model.isSorted = true
+        model.isFiltered = true
         contactTableView.reloadData()
     }
 }

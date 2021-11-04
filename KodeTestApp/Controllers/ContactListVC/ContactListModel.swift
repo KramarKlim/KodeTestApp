@@ -15,7 +15,7 @@ protocol ContactListModelProtocol {
     var isSearching: Bool { get set }
     var sortType: SortType { get set }
     var department: [Item] { get set}
-    var isSorted: Bool { get set }
+    var isFiltered: Bool { get set }
     var isError: Bool { get set }
     
     func numberOfCells() -> Int
@@ -34,7 +34,7 @@ class ContactListModel: ContactListModelProtocol {
     
     var isError: Bool = true
     
-    var isSorted: Bool = false
+    var isFiltered: Bool = false
     
     var department: [Item] = []
     
@@ -47,6 +47,10 @@ class ContactListModel: ContactListModelProtocol {
     var contacts: [Item] = []
     
     var lastActiveIndex: IndexPath = [0,0]
+    
+    var twentyOne: [Item] = []
+    
+    var twentyTwo: [Item] = []
     
     func numberOfCells() -> Int {
         DataManager.shared.sortingType.count
@@ -72,7 +76,7 @@ class ContactListModel: ContactListModelProtocol {
     func getNumberOfRows() -> Int {
         if isSearching {
             return filtered.count
-        } else if isSorted == false{
+        } else if isFiltered == false{
             return contacts.count
         } else {
             return department.count
@@ -82,7 +86,7 @@ class ContactListModel: ContactListModelProtocol {
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol? {
         if isSearching {
             return ContactModel(contact: filtered[indexPath.row], type: sortType)
-        } else if isSorted == false {
+        } else if isFiltered == false {
             return ContactModel(contact: contacts[indexPath.row], type: sortType)
         } else {
             return ContactModel(contact: department[indexPath.row], type: sortType)
@@ -94,7 +98,7 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func didChanged(text: String) {
-        if isSorted == false {
+        if isFiltered == false {
             filtered = contacts.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
         } else {
             filtered = department.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
@@ -105,7 +109,7 @@ class ContactListModel: ContactListModelProtocol {
     func profileModel(indexPath: IndexPath) -> ProfileModelProtocol? {
         if isSearching {
             return ProfileModel(profile: filtered[indexPath.row])
-        } else if isSorted == false {
+        } else if isFiltered == false {
             return ProfileModel(profile: contacts[indexPath.row])
         } else {
             return ProfileModel(profile: department[indexPath.row])
@@ -113,16 +117,16 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func sortContact() {
-        if isSorted == false {
+        if isFiltered == false {
             switch sortType {
             case .date:
-                contacts = contacts.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно")}
+                contacts = contacts.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно")}
             case .word: contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
             }
         } else {
             switch sortType {
-            case .date: department = department.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dd") ?? "Неизвестно")}
+            case .date: department = department.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно")}
             case .word: department = department.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
             }
