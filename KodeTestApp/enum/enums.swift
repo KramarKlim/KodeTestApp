@@ -76,3 +76,8 @@ enum Professions: String {
         }
     }
 }
+
+enum CardState {
+    case expanded
+    case collapsed
+}

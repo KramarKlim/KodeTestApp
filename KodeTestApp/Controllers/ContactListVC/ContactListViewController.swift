@@ -32,11 +32,6 @@ class ContactListViewController: UIViewController {
         request()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
     @objc private func refresh(sender: UIRefreshControl) {
         model.fetchRequest { [weak self] in
             guard let self = self else { return}
@@ -61,6 +56,7 @@ class ContactListViewController: UIViewController {
     }
     
     private func setup() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupSearchBar()
         setupCollectionView()
         setupTableView()

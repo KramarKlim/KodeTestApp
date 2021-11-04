@@ -29,12 +29,9 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 15.0, *) {
-            setup()
-        } else {
-            wordButtom.tintColor = .customPurple
-            dateButton.tintColor = .customPurple
-            model.imageButton(word: wordButtom, date: dateButton)
+            setupSheetPresentation()
         }
+        setup()
     }
 
 
@@ -54,10 +51,11 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
         dismiss(animated: true)
     }
     
-    @available(iOS 15.0, *)
     private func setup() {
-        view.backgroundColor = .white
-        setupSheetPresentation()
+        wordButtom.tintColor = .customPurple
+        dateButton.tintColor = .customPurple
+        model.imageButton(word: wordButtom, date: dateButton)
+
     }
     
     @available(iOS 15.0, *)
