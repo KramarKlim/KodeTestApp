@@ -48,6 +48,7 @@ class ContactListViewController: UIViewController {
                         }, completion: nil)
                     }
                 } else {
+                    self.model.sortContact()
                     self.contactTableView.reloadData()
                 }
                 self.refreshControl.endRefreshing()
@@ -136,6 +137,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
             self.model.lastActiveIndex = indexPath
         }
         model.sortByProf(indexPath: indexPath)
+        model.sortContact()
         model.isFiltered = true
         contactTableView.reloadData()
     }
@@ -181,9 +183,9 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         "contact"
     }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        model.getNumberOfRows()
+        model.getNumberOfRows(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -201,6 +203,26 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
         performSegue(withIdentifier: "profile", sender: profileModel)
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 && model.sortType == .date {
+        return FooterView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+        } else {
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 && model.sortType == .date {
+            return 50
+        } else {
+            return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        model.numberOfSections()
+    }
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! ProfileViewController
         detailVC.model = sender as? ProfileModelProtocol

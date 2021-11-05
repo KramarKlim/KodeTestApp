@@ -23,11 +23,13 @@ protocol ContactListModelProtocol {
     func didChanged(text: String)
     func sortedList(indexPath: IndexPath) -> SortedListModelProtocol?
     func fetchRequest(completion: @escaping () -> Void)
-    func getNumberOfRows() -> Int
+    func getNumberOfRows(section: Int) -> Int
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol?
     func profileModel(indexPath: IndexPath) -> ProfileModelProtocol?
     func sortContact()
     func sortByProf(indexPath: IndexPath)
+    func numberOfSections() -> Int
+    func getCurrentTime(format: String) -> String
 }
 
 class ContactListModel: ContactListModelProtocol {
@@ -73,9 +75,15 @@ class ContactListModel: ContactListModelProtocol {
         }
     }
     
-    func getNumberOfRows() -> Int {
+    func getNumberOfRows(section: Int) -> Int {
         if isSearching {
             return filtered.count
+        } else if sortType == .date {
+            switch section {
+            case 0: return twentyOne.count
+            case 1: return twentyTwo.count
+            default: return 0
+            }
         } else if isFiltered == false{
             return contacts.count
         } else {
@@ -86,6 +94,12 @@ class ContactListModel: ContactListModelProtocol {
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol? {
         if isSearching {
             return ContactModel(contact: filtered[indexPath.row], type: sortType)
+        } else if sortType == .date {
+            switch indexPath.section {
+            case 0: return ContactModel(contact: twentyOne[indexPath.row], type: sortType)
+            case 1: return ContactModel(contact: twentyTwo[indexPath.row], type: sortType)
+            default: return nil
+            }
         } else if isFiltered == false {
             return ContactModel(contact: contacts[indexPath.row], type: sortType)
         } else {
@@ -109,6 +123,12 @@ class ContactListModel: ContactListModelProtocol {
     func profileModel(indexPath: IndexPath) -> ProfileModelProtocol? {
         if isSearching {
             return ProfileModel(profile: filtered[indexPath.row])
+        } else if sortType == .date {
+            switch indexPath.section {
+            case 0: return ProfileModel(profile: twentyOne[indexPath.row])
+            case 1: return ProfileModel(profile: twentyTwo[indexPath.row])
+            default: return nil
+            }
         } else if isFiltered == false {
             return ProfileModel(profile: contacts[indexPath.row])
         } else {
@@ -120,13 +140,22 @@ class ContactListModel: ContactListModelProtocol {
         if isFiltered == false {
             switch sortType {
             case .date:
-                contacts = contacts.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно")}
+                twentyOne = contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! >= getCurrentTime(format: "MM dd")}
+                twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
+                twentyTwo =  contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! < getCurrentTime(format: "MM dd")}
+                twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
             case .word: contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
             }
         } else {
             switch sortType {
-            case .date: department = department.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM dddd") ?? "Неизвестно")}
+            case .date:
+                twentyOne = department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! >= getCurrentTime(format: "MM dd")}
+                twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
+                twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! < getCurrentTime(format: "MM dd")}
+                twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
+                print(twentyOne.map{$0.birthday})
+                print(twentyTwo.map{$0.birthday})
             case .word: department = department.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
             }
@@ -136,5 +165,18 @@ class ContactListModel: ContactListModelProtocol {
     func sortByProf(indexPath: IndexPath) {
         guard let contact = Professions.init(rawValue: DataManager.shared.sortingType[indexPath.row]) else { return department = contacts}
         department = contacts.filter{$0.department == contact.description}
+    }
+    func getCurrentTime(format: String) -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return  formatter.string(from: date)
+    }
+    
+    func numberOfSections() -> Int {
+        if sortType == .date {
+            return 2
+        }
+        return 1
     }
 }
