@@ -17,6 +17,9 @@ protocol ContactListModelProtocol {
     var department: [Item] { get set}
     var isFiltered: Bool { get set }
     var isError: Bool { get set }
+    var twentyOne: [Item] { get set }
+    var twentyTwo: [Item] { get set }
+    var filteredSecond: [Item] { get set }
     
     func numberOfCells() -> Int
     func bugs(text: String) -> Bool
@@ -43,6 +46,8 @@ class ContactListModel: ContactListModelProtocol {
     var sortType: SortType = .nothing
     
     var filtered: [Item] = []
+    
+    var filteredSecond: [Item] = []
     
     var isSearching: Bool = false
     
@@ -76,8 +81,14 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func getNumberOfRows(section: Int) -> Int {
-        if isSearching {
+        if isSearching && sortType != .date {
             return filtered.count
+        } else if isSearching {
+            switch section {
+            case 0: return filtered.count
+            case 1: return filteredSecond.count
+            default: return 0
+            }
         } else if sortType == .date {
             switch section {
             case 0: return twentyOne.count
@@ -92,8 +103,14 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func contactModel(indexPath: IndexPath) -> ContactModelProtocol? {
-        if isSearching {
+        if isSearching && sortType != .date {
             return ContactModel(contact: filtered[indexPath.row], type: sortType)
+        } else if isSearching {
+            switch indexPath.section {
+            case 0: return ContactModel(contact: filtered[indexPath.row], type: sortType)
+            case 1: return ContactModel(contact: filteredSecond[indexPath.row], type: sortType)
+            default: return nil
+            }
         } else if sortType == .date {
             switch indexPath.section {
             case 0: return ContactModel(contact: twentyOne[indexPath.row], type: sortType)
@@ -112,7 +129,10 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func didChanged(text: String) {
-        if isFiltered == false {
+        if sortType == .date {
+            filtered = twentyOne.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
+            filteredSecond = twentyTwo.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
+        } else if isFiltered == false {
             filtered = contacts.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
         } else {
             filtered = department.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text })
@@ -121,8 +141,14 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func profileModel(indexPath: IndexPath) -> ProfileModelProtocol? {
-        if isSearching {
+        if isSearching && sortType != .date {
             return ProfileModel(profile: filtered[indexPath.row])
+        } else if isSearching {
+            switch indexPath.section {
+            case 0: return ProfileModel(profile: filtered[indexPath.row])
+            case 1: return ProfileModel(profile: filteredSecond[indexPath.row])
+            default: return nil
+            }
         } else if sortType == .date {
             switch indexPath.section {
             case 0: return ProfileModel(profile: twentyOne[indexPath.row])
@@ -140,9 +166,9 @@ class ContactListModel: ContactListModelProtocol {
         if isFiltered == false {
             switch sortType {
             case .date:
-                twentyOne = contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! >= getCurrentTime(format: "MM dd")}
+                twentyOne = contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! >= getCurrentTime(format: "MM dd")}
                 twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
-                twentyTwo =  contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! < getCurrentTime(format: "MM dd")}
+                twentyTwo =  contacts.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! < getCurrentTime(format: "MM dd")}
                 twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
             case .word: contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
@@ -150,9 +176,9 @@ class ContactListModel: ContactListModelProtocol {
         } else {
             switch sortType {
             case .date:
-                twentyOne = department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! >= getCurrentTime(format: "MM dd")}
+                twentyOne = department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! >= getCurrentTime(format: "MM dd")}
                 twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
-                twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM"))! < getCurrentTime(format: "MM dd")}
+                twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! < getCurrentTime(format: "MM dd")}
                 twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
                 print(twentyOne.map{$0.birthday})
                 print(twentyTwo.map{$0.birthday})

@@ -34,8 +34,8 @@ class FooterView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         leftView.frame = CGRect(x: 24, y: frame.midY, width: frame.width/5, height: 2)
-        rightView.frame = CGRect(x: frame.maxX-100, y: frame.midY, width: frame.width/5, height: 2)
-        yearLabel.frame = CGRect(x: frame.midX-10, y: frame.midY-10, width: 160, height: 20)
+        rightView.frame = CGRect(x: frame.maxX-110, y: frame.midY, width: frame.width/5, height: 2)
+        yearLabel.frame = CGRect(x: frame.midX-20, y: frame.midY-10, width: 160, height: 20)
         self.addSubview(leftView)
         self.addSubview(rightView)
         self.addSubview(yearLabel)

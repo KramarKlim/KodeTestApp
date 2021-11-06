@@ -147,7 +147,9 @@ extension ContactListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         model.didChanged(text: searchText)
-        if model.filtered.isEmpty && model.isSearching {
+        if model.filtered.isEmpty && model.isSearching && model.sortType != .date {
+            contactTableView.isHidden = true
+        } else if model.isSearching && model.filtered.isEmpty && model.filteredSecond.isEmpty {
             contactTableView.isHidden = true
         } else {
             contactTableView.isHidden = false
