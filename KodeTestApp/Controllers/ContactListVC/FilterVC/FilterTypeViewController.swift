@@ -61,7 +61,7 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
     @available(iOS 15.0, *)
     private func setupSheetPresentation() {
         sheetPresentationController.delegate = self
-        sheetPresentationController.selectedDetentIdentifier = .large
+        sheetPresentationController.selectedDetentIdentifier = .medium
         sheetPresentationController.prefersGrabberVisible = true
         sheetPresentationController.detents = [.medium(), .large()]
     }

@@ -40,6 +40,7 @@ class ContactListViewController: UIViewController {
                     ErrorRefresh().error()
                 } else {
                     self.model.sortContact()
+                    self.model.sortByProf(indexPath: self.model.lastActiveIndex)
                     self.contactTableView.reloadData()
                 }
                 self.refreshControl.endRefreshing()
@@ -134,7 +135,6 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
         }
         model.sortByProf(indexPath: indexPath)
         model.sortContact()
-        model.isFiltered = true
         contactTableView.reloadData()
     }
 }
@@ -174,6 +174,10 @@ extension ContactListViewController: UISearchBarDelegate {
         filerVC.model = filterModel
         filerVC.typeDelegate = self
         present(filerVC, animated: true, completion: nil)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        model.bugs(text: text)
     }
 }
 

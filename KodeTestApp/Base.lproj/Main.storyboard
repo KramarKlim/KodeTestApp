@@ -67,7 +67,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TJT-D2-1Gy">
-                                <rect key="frame" x="0.0" y="138" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="537"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,7 +87,7 @@
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="PFx-ly-nSi"/>
                             <constraint firstItem="wvd-h8-6gT" firstAttribute="centerX" secondItem="eRE-ZZ-CBN" secondAttribute="centerX" id="PGg-F1-1E5"/>
                             <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="OWp-K9-pAv" secondAttribute="trailing" id="Q4w-Zg-LLs"/>
-                            <constraint firstItem="TJT-D2-1Gy" firstAttribute="top" secondItem="OWp-K9-pAv" secondAttribute="bottom" constant="8" symbolic="YES" id="eVY-9q-YSZ"/>
+                            <constraint firstItem="TJT-D2-1Gy" firstAttribute="top" secondItem="OWp-K9-pAv" secondAttribute="bottom" id="bNI-KZ-AnF"/>
                             <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="FWK-yU-XLi" secondAttribute="trailing" constant="16" id="ecB-so-wvU"/>
                             <constraint firstAttribute="bottom" secondItem="TJT-D2-1Gy" secondAttribute="bottom" id="huQ-ed-SXB"/>
                             <constraint firstItem="FWK-yU-XLi" firstAttribute="top" secondItem="wvd-h8-6gT" secondAttribute="bottom" constant="12" id="nHS-0N-rAe"/>
@@ -105,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOE-yU-fXW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2709.2307692307691" y="-66.824644549763036"/>
+            <point key="canvasLocation" x="2708" y="-67.016491754122939"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="2dO-gH-5et">
