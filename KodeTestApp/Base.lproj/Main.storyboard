@@ -72,6 +72,13 @@
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5V-yO-mMe">
+                                <rect key="frame" x="0.0" y="130" width="375" height="1"/>
+                                <color key="backgroundColor" red="0.76470588235294112" green="0.76470588235294112" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="u2F-H6-dX5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IDx-12-7up"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,15 +88,18 @@
                             <constraint firstItem="wvd-h8-6gT" firstAttribute="centerY" secondItem="eRE-ZZ-CBN" secondAttribute="centerY" id="6Yh-0R-IRh"/>
                             <constraint firstItem="wvd-h8-6gT" firstAttribute="top" secondItem="wX2-zh-duq" secondAttribute="bottom" constant="8" id="7ee-t5-CJo"/>
                             <constraint firstItem="OWp-K9-pAv" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="9Op-qK-1xX"/>
+                            <constraint firstItem="K5V-yO-mMe" firstAttribute="leading" secondItem="eRE-ZZ-CBN" secondAttribute="leading" id="Cfm-ah-5jw"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="trailing" secondItem="IDx-12-7up" secondAttribute="trailing" id="Hlm-pm-rSI"/>
                             <constraint firstItem="0H4-YX-9o1" firstAttribute="trailing" secondItem="IDx-12-7up" secondAttribute="trailing" id="LiH-YV-zdB"/>
                             <constraint firstItem="FWK-yU-XLi" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" constant="16" id="M8a-0I-KUI"/>
                             <constraint firstItem="TJT-D2-1Gy" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="PFx-ly-nSi"/>
                             <constraint firstItem="wvd-h8-6gT" firstAttribute="centerX" secondItem="eRE-ZZ-CBN" secondAttribute="centerX" id="PGg-F1-1E5"/>
+                            <constraint firstItem="K5V-yO-mMe" firstAttribute="top" secondItem="TJT-D2-1Gy" secondAttribute="top" id="Poe-kA-7V5"/>
                             <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="OWp-K9-pAv" secondAttribute="trailing" id="Q4w-Zg-LLs"/>
-                            <constraint firstItem="TJT-D2-1Gy" firstAttribute="top" secondItem="OWp-K9-pAv" secondAttribute="bottom" id="bNI-KZ-AnF"/>
                             <constraint firstItem="IDx-12-7up" firstAttribute="trailing" secondItem="FWK-yU-XLi" secondAttribute="trailing" constant="16" id="ecB-so-wvU"/>
+                            <constraint firstAttribute="trailing" secondItem="K5V-yO-mMe" secondAttribute="trailing" id="eqG-2u-FZF"/>
                             <constraint firstAttribute="bottom" secondItem="TJT-D2-1Gy" secondAttribute="bottom" id="huQ-ed-SXB"/>
+                            <constraint firstItem="TJT-D2-1Gy" firstAttribute="top" secondItem="OWp-K9-pAv" secondAttribute="bottom" id="kJV-kj-Tzf"/>
                             <constraint firstItem="FWK-yU-XLi" firstAttribute="top" secondItem="wvd-h8-6gT" secondAttribute="bottom" constant="12" id="nHS-0N-rAe"/>
                             <constraint firstItem="OWp-K9-pAv" firstAttribute="top" secondItem="0H4-YX-9o1" secondAttribute="bottom" id="oIi-eq-jU7"/>
                             <constraint firstItem="0H4-YX-9o1" firstAttribute="leading" secondItem="IDx-12-7up" secondAttribute="leading" id="r62-Lu-M8B"/>
