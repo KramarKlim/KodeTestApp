@@ -10,18 +10,17 @@ import SkeletonView
 
 class ContactListViewController: UIViewController {
     
+    //MARK: Public Property
     var model: ContactListModelProtocol = ContactListModel()
         
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addSubview(GrayCircleView(frame: CGRect(x: refreshControl.center.x+18, y: refreshControl.center.y, width: 20, height: 20)))
-
-        refreshControl.addSubview(SpinnerView(frame: CGRect(x: refreshControl.center.x+18, y: refreshControl.center.y, width: 20, height: 20)))
         refreshControl.tintColor = .clear
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
     
+    //MARK: IBOutlets
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var sortContactsCollectionView: UICollectionView!
     @IBOutlet var contactTableView: UITableView!
@@ -32,21 +31,13 @@ class ContactListViewController: UIViewController {
         request()
     }
     
+    //MARK: Private Methods
     @objc private func refresh(sender: UIRefreshControl) {
         model.fetchRequest { [weak self] in
             guard let self = self else { return}
             DispatchQueue.main.async {
                 if self.model.isError == false {
-                    let window = UIApplication.shared.windows.last!
-                    let viewToShow = ErrorView(frame: CGRect(x: 0, y: 0, width: window.frame.size.width, height: window.frame.size.height / 9))
-                    viewToShow.backgroundColor = UIColor.red
-                    window.addSubview(viewToShow)
-                    let top = CGAffineTransform(translationX: 0, y: -300)
-                    Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { (_) in
-                        UIWindow.animate(withDuration: 0.4, delay: 0.0, options: [], animations: {
-                              viewToShow.transform = top
-                        }, completion: nil)
-                    }
+                    ErrorRefresh().error()
                 } else {
                     self.model.sortContact()
                     self.contactTableView.reloadData()
@@ -73,6 +64,9 @@ class ContactListViewController: UIViewController {
         searchBar.setValue("Отмена", forKey: "cancelButtonText")
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 248.0/255.0, alpha: 1)
+        refreshControl.addSubview(GrayCircleView(frame: CGRect(x: view.center.x-10, y: refreshControl.center.y, width: 20, height: 20)))
+        refreshControl.addSubview(SpinnerView(frame: CGRect(x: view.center.x-10, y: refreshControl.center.y, width: 20, height: 20)))
+
     }
     
     private func setupCollectionView() {
@@ -107,7 +101,9 @@ class ContactListViewController: UIViewController {
     }
 }
 
+//MARK: UICollectionViewDataSource, UICollectionViewDelegate
 extension ContactListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         model.numberOfCells()
     }
@@ -143,6 +139,7 @@ extension ContactListViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 
+//MARK: UISearchBarDelegate
 extension ContactListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -180,6 +177,7 @@ extension ContactListViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: SkeletonTableViewDelegate, SkeletonTableViewDataSource
 extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -214,11 +212,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 && model.sortType == .date {
-            return 50
-        } else {
-            return 0
-        }
+        model.heightForHeaderInSection(section: section)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -232,6 +226,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     }
 }
 
+//MARK: SelectSortType
 extension ContactListViewController: SelectSortType {
     func didSelectType(type: SortType) {
         model.sortType = type
@@ -241,6 +236,7 @@ extension ContactListViewController: SelectSortType {
     }
 }
 
+//MARK: AgainRequest
 extension ContactListViewController: AgainRequest {
     func needToReload() {
         setupTableView()

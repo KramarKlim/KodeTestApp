@@ -33,6 +33,7 @@ protocol ContactListModelProtocol {
     func sortByProf(indexPath: IndexPath)
     func numberOfSections() -> Int
     func getCurrentTime(format: String) -> String
+    func heightForHeaderInSection(section: Int) -> CGFloat
 }
 
 class ContactListModel: ContactListModelProtocol {
@@ -180,8 +181,6 @@ class ContactListModel: ContactListModelProtocol {
                 twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
                 twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! < getCurrentTime(format: "MM dd")}
                 twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
-                print(twentyOne.map{$0.birthday})
-                print(twentyTwo.map{$0.birthday})
             case .word: department = department.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
             case .nothing: break
             }
@@ -192,6 +191,7 @@ class ContactListModel: ContactListModelProtocol {
         guard let contact = Professions.init(rawValue: DataManager.shared.sortingType[indexPath.row]) else { return department = contacts}
         department = contacts.filter{$0.department == contact.description}
     }
+    
     func getCurrentTime(format: String) -> String {
         let date = Date()
         let formatter = DateFormatter()
@@ -204,5 +204,13 @@ class ContactListModel: ContactListModelProtocol {
             return 2
         }
         return 1
+    }
+    
+    func heightForHeaderInSection(section: Int) -> CGFloat {
+        if section == 1 && sortType == .date {
+            return 50
+        } else {
+            return 0
+        }
     }
 }

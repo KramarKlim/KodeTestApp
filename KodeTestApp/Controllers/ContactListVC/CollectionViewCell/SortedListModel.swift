@@ -9,6 +9,7 @@ import Foundation
 
 protocol SortedListModelProtocol {
     var name: String { get }
+    
     init(name: String)
 }
 

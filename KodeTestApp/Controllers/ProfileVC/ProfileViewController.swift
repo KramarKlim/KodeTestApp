@@ -9,8 +9,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    //MARK: Public Property
     var model: ProfileModelProtocol!
     
+    //MARK: IBOutlets
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
@@ -25,11 +27,12 @@ class ProfileViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    //MARK: IBAction
     @IBAction func backButtonAction(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
+    //MARK: Private Methods
     private func setup() {
         setupImage()
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
@@ -50,10 +53,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func phoneButtonAction(_ sender: UIButton) {
-        aler(title: model.getNumber(), titleSecond: model.numberToCall())
-    }
-    
     private func aler(title: String, titleSecond: String) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let number = UIAlertAction(title: title, style: .default) { _ in
@@ -70,5 +69,10 @@ class ProfileViewController: UIViewController {
         alert.addAction(number)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: IBAction
+    @IBAction func phoneButtonAction(_ sender: UIButton) {
+        aler(title: model.getNumber(), titleSecond: model.numberToCall())
     }
 }
