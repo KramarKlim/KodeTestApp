@@ -47,7 +47,7 @@ class ContactListViewController: UIViewController {
             }
         }
     }
-    
+          
     private func setup() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupSearchBar()
