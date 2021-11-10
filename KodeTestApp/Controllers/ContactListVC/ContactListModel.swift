@@ -136,7 +136,11 @@ class ContactListModel: ContactListModelProtocol {
         } else {
             filtered = department.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text }) + department.filter({($0.lastName ?? "Неизвестно").prefix(text.count) == text }) + department.filter({($0.userTag?.lowercased() ?? "Неизвестно").prefix(text.count) == text })
         }
-        isSearching = true
+        if text == "" {
+            isSearching = false
+        } else {
+            isSearching = true
+        }
     }
     
     func profileModel(indexPath: IndexPath) -> ProfileModelProtocol? {
