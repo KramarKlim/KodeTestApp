@@ -69,7 +69,7 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func fetchRequest(completion: @escaping () -> Void) {
-        NetworkDataFetcher.shared.getData(headers: DataManager.shared.errorType(type: .random), request: DataManager.shared.request, decodeType: User.self) { result in
+        NetworkDataFetcher.shared.getData(headers: DataManager.shared.errorType(type: .success), request: DataManager.shared.request, decodeType: User.self) { result in
             self.isError = true
             if result?.items == nil {
                 self.isError = false
