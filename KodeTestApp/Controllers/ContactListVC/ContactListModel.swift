@@ -131,10 +131,22 @@ class ContactListModel: ContactListModelProtocol {
     
     func didChanged(text: String) {
         if sortType == .date {
-            filtered = twentyOne.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text }) + twentyOne.filter({($0.lastName ?? "Неизвестно").prefix(text.count) == text }) + twentyOne.filter({($0.userTag?.lowercased() ?? "Неизвестно").prefix(text.count) == text })
-            filteredSecond = twentyTwo.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text }) + twentyTwo.filter({($0.lastName ?? "Неизвестно").prefix(text.count) == text }) + twentyTwo.filter({($0.userTag?.lowercased() ?? "Неизвестно").prefix(text.count) == text })
+            filtered = twentyOne.filter { item in
+                (item.firstName ?? "").prefix(text.count) == text ||
+                (item.lastName ?? "").prefix(text.count) == text ||
+                (item.userTag?.lowercased() ?? "").prefix(text.count) == text
+            }
+            filteredSecond = twentyTwo.filter { item in
+                (item.firstName ?? "").prefix(text.count) == text ||
+                (item.lastName ?? "").prefix(text.count) == text ||
+                (item.userTag?.lowercased() ?? "").prefix(text.count) == text
+            }
         } else {
-            filtered = department.filter({($0.firstName ?? "Неизвестно").prefix(text.count) == text }) + department.filter({($0.lastName ?? "Неизвестно").prefix(text.count) == text }) + department.filter({($0.userTag?.lowercased() ?? "Неизвестно").prefix(text.count) == text })
+            filtered = department.filter { item in
+                (item.firstName ?? "").prefix(text.count) == text ||
+                (item.lastName ?? "").prefix(text.count) == text ||
+                (item.userTag?.lowercased() ?? "").prefix(text.count) == text
+            }
         }
         if text == "" {
             isSearching = false
