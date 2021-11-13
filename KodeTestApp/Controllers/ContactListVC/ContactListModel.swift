@@ -41,7 +41,7 @@ class ContactListModel: ContactListModelProtocol {
     var isFiltered: Bool = false
     
     var isError: Bool = true
-        
+    
     var department: [Item] = []
     
     var sortType: SortType = .nothing
@@ -69,7 +69,7 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func fetchRequest(completion: @escaping () -> Void) {
-        NetworkDataFetcher.shared.getData(headers: DataManager.shared.errorType(type: .success), request: DataManager.shared.request, decodeType: User.self) { result in
+        NetworkDataFetcher.shared.getData(headers: DataManager.shared.errorType(type: .random), request: DataManager.shared.request, decodeType: User.self) { result in
             self.isError = true
             if result?.items == nil {
                 self.isError = false
@@ -164,16 +164,18 @@ class ContactListModel: ContactListModelProtocol {
     }
     
     func sortContact() {
-            switch sortType {
-            case .date:
-                twentyOne = department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! >= getCurrentTime(format: "MM dd")}
-                twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
-                twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! < getCurrentTime(format: "MM dd")}
-                twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
-            case .word: department = department.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
-            case .nothing: break
-            }
+        switch sortType {
+        case .date:
+            twentyOne = department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! >= getCurrentTime(format: "MM dd")}
+            twentyOne = twentyOne.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
+            twentyTwo =  department.filter{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd"))! < getCurrentTime(format: "MM dd")}
+            twentyTwo = twentyTwo.sorted{($0.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно") < ($1.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MM dd") ?? "Неизвестно")}
+        case .word:
+            contacts = contacts.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
+            department = department.sorted{($0.firstName ?? "Неизвестно") < ($1.firstName ?? "Неизвестно")}
+        case .nothing: break
         }
+    }
     
     func sortByProf(indexPath: IndexPath) {
         guard let contact = Professions.init(rawValue: DataManager.shared.sortingType[indexPath.row]) else { return department = contacts}

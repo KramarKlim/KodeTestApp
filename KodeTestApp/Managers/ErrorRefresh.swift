@@ -11,7 +11,7 @@ import UIKit
 class ErrorRefresh {
     let window = UIApplication.shared.windows.last!
     let top = CGAffineTransform(translationX: 0, y: -300)
-
+    
     func error() {
         let viewToShow = ErrorView(frame: CGRect(x: 0, y: 0, width: window.frame.size.width, height: window.frame.size.height / 9))
         viewToShow.backgroundColor = UIColor.red

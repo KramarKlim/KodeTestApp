@@ -31,7 +31,7 @@ extension UIImageView {
         if let chacheedResponse = URLCache.shared.cachedResponse(for: urlRequest) {
             return UIImage(data: chacheedResponse.data)
         }
-       return nil
+        return nil
     }
     
     private func saveDataToCach(with data: Data, response: URLResponse) {
@@ -39,6 +39,6 @@ extension UIImageView {
         let chacheedResponse = CachedURLResponse(response: response, data: data)
         let urlRequest = URLRequest(url: urlResponse)
         URLCache.shared.storeCachedResponse(chacheedResponse, for: urlRequest)
-         
+        
     }
 }

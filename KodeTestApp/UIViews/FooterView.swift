@@ -19,13 +19,13 @@ class FooterView: UIView {
     }()
     
     let leftView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()
     
     let rightView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .lightGray
         return view
     }()

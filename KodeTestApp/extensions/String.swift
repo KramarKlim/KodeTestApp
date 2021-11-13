@@ -36,7 +36,7 @@ extension String {
             if ch == "X" {
                 result.append(numbers[index])
                 index = numbers.index(after: index)
-
+                
             } else {
                 result.append(ch)
             }
@@ -49,9 +49,8 @@ extension String {
         guard self != "12" else { return "лет"}
         guard self != "13" else { return "лет"}
         guard self != "14" else { return "лет"}
-
+        
         guard let number = Int(self) else { return "Неизвестно" }
-        print(number % 10)
         switch number % 10 {
         case 0: return "лет"
         case 5...9: return "лет"

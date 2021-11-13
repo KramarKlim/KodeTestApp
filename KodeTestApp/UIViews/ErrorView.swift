@@ -8,9 +8,9 @@
 import UIKit
 
 class ErrorView: UIView {
-
+    
     let errorLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .white
         label.backgroundColor = .clear
         label.text = "Не могу обновить данные. \nПроверь соединение с интернетом."

@@ -54,7 +54,7 @@ class ProfileModel: ProfileModelProtocol {
     }
     
     func getDate() -> String {
-     let day = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd") ?? "Неизвестно"
+        let day = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd") ?? "Неизвестно"
         let monthEng = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "MMMM") ?? "Неизвестно"
         let year = profile.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "yyyy") ?? "Неизвестно"
         guard let month = MonthRussian.init(rawValue: monthEng) else { return "Неизвестно"}

@@ -12,7 +12,7 @@ class ContactListViewController: UIViewController {
     
     //MARK: Public Property
     var model: ContactListModelProtocol = ContactListModel()
-        
+    
     let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .clear
@@ -47,7 +47,7 @@ class ContactListViewController: UIViewController {
             }
         }
     }
-          
+    
     private func setup() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupSearchBar()
@@ -67,7 +67,7 @@ class ContactListViewController: UIViewController {
         textFieldInsideSearchBar?.backgroundColor = UIColor(red: 247.0/255.0, green: 247.0/255.0, blue: 248.0/255.0, alpha: 1)
         refreshControl.addSubview(GrayCircleView(frame: CGRect(x: view.center.x-10, y: refreshControl.center.y, width: 20, height: 20)))
         refreshControl.addSubview(SpinnerView(frame: CGRect(x: view.center.x-10, y: refreshControl.center.y, width: 20, height: 20)))
-
+        
     }
     
     private func setupCollectionView() {
@@ -187,7 +187,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         "contact"
     }
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         model.getNumberOfRows(section: section)
     }
@@ -209,7 +209,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 && model.sortType == .date {
-        return FooterView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
+            return FooterView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
         } else {
             return nil
         }
@@ -222,7 +222,7 @@ extension ContactListViewController: SkeletonTableViewDelegate, SkeletonTableVie
     func numberOfSections(in tableView: UITableView) -> Int {
         model.numberOfSections()
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let detailVC = segue.destination as! ProfileViewController
         detailVC.model = sender as? ProfileModelProtocol

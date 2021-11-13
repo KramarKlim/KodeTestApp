@@ -57,10 +57,10 @@ class ProfileViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let number = UIAlertAction(title: title, style: .default) { _ in
             if let phoneCallURL = URL(string: "tel://\(titleSecond)") {
-              let application:UIApplication = UIApplication.shared
-              if (application.canOpenURL(phoneCallURL)) {
-                  application.open(phoneCallURL, options: [:], completionHandler: nil)
-              }
+                let application:UIApplication = UIApplication.shared
+                if (application.canOpenURL(phoneCallURL)) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                }
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

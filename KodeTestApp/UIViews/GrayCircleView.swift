@@ -8,7 +8,7 @@
 import UIKit
 
 class GrayCircleView: UIView {
-
+    
     let spinnignCircle = CAShapeLayer()
     
     

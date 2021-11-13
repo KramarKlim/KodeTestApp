@@ -12,7 +12,7 @@ class SortedListCollectionViewCell: UICollectionViewCell {
     var model: SortedListModelProtocol! {
         didSet {
             nameLabel.text = model.name
-
+            
         }
     }
     
@@ -21,8 +21,8 @@ class SortedListCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = .lightGray
         colorView.backgroundColor = .white
     }
-
+    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var colorView: UIView!
-        
+    
 }

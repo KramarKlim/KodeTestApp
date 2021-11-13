@@ -14,7 +14,7 @@ protocol AgainRequest {
 class ErrorViewController: UIViewController {
     
     var reload: AgainRequest!
-
+    
     @IBOutlet var backButton: UIButton!
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class ErrorViewController: UIViewController {
         backButton.tintColor = .customPurple
         self.navigationItem.hidesBackButton = true
     }
-
+    
     @IBAction func backButtonAction(_ sender: Any) {
         reload.needToReload()
         self.navigationController?.popViewController(animated: false)

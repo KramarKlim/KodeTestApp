@@ -25,7 +25,7 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
     @IBOutlet var wordButtom: UIButton!
     @IBOutlet var dateButton: UIButton!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOS 15.0, *) {
@@ -33,8 +33,8 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
         }
         setup()
     }
-
-
+    
+    
     @IBAction func backButtonAction(_ sender: UIButton) {
         dismiss(animated: true)
     }
@@ -55,7 +55,7 @@ class FilterTypeViewController: UIViewController, UISheetPresentationControllerD
         wordButtom.tintColor = .customPurple
         dateButton.tintColor = .customPurple
         model.imageButton(word: wordButtom, date: dateButton)
-
+        
     }
     
     @available(iOS 15.0, *)

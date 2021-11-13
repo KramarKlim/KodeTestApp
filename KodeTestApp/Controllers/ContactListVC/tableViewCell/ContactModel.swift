@@ -49,7 +49,7 @@ class ContactModel: ContactModelProtocol {
     
     func getDay() -> String? {
         if type == .word || type == .nothing {
-          return nil
+            return nil
         } else {
             return contact.birthday?.convertDateFormater(currentFormat: "yyyy-MM-dd", needFromat: "dd MMM" ) ?? "Неизвестно"
         }
